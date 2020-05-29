@@ -1,0 +1,24 @@
+{
+  "name": "pblog",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "dependencies": {
+    "simple-jekyll-search": "^1.7.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Link-/pblog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Link-/pblog/issues"
+  },
+  "homepage": "https://github.com/Link-/pblog#readme"
+}
