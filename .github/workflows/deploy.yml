@@ -8,6 +8,7 @@ on:
 jobs:
 
   deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -16,22 +17,20 @@ jobs:
       with:
         ruby-version: '2.7'
     
-    - name: Assets build & deploy
-      env:
-        HOST_NAME: ${{ secrets.HOST_NAME }}
-        REMOTE_LOCATION: ${{ secrets.REMOTE_LOCATION }}
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    - name: Build Assets
       run: |
-        # echo "INFO:: Installing bundler"
-        # gem install bundler
-        # echo "INFO:: Building..."
-        # bundle install --jobs=4
-        # bundle exec jekyll build
-        echo "INFO:: Create private key"
-        echo "$PRIVATE_KEY" > ./id_rsa
-        sudo chmod 600 ./id_rsa
-        cat ./id_rsa
-        echo "INFO:: Synching with remote $HOST_NAME"
-        ssh -i ./id_rsa $HOST_NAME
-        # rsync -raL --delete -P -e "ssh -i ./id_rsa" ./_site/ $HOST_NAME:$REMOTE_LOCATION
-        echo "INFO:: Done!"
+        echo "INFO:: Installing bundler"
+        gem install bundler
+        echo "INFO:: Building..."
+        bundle install --jobs=4
+        bundle exec jekyll build
+
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.1.1
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        ARGS: "-raL --delete"
+        SOURCE: "_site/"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.REMOTE_LOCATION }}
