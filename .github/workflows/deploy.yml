@@ -6,7 +6,8 @@ on:
       - master
 
 jobs:
-  action:
+
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +24,7 @@ jobs:
       run: |
         gem install bundler
         echo "INFO:: Building..."
+        bundle install
         bundle exec jekyll build
         echo "INFO:: Synching with remote $HOST_NAME"
         echo "INFO:: Done!"
