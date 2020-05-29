@@ -19,12 +19,16 @@ jobs:
     - name: Assets build & deploy
       env:
         HOST_NAME: ${{ secrets.HOST_NAME }}
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         REMOTE_LOCATION: ${{ secrets.REMOTE_LOCATION }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
+        sudo apt-get install rsync
         gem install bundler
         echo "INFO:: Building..."
         bundle install
         bundle exec jekyll build
+        echo "INFO:: Create private key"
+        echo $PRIVATE_KEY >> id_rsa
         echo "INFO:: Synching with remote $HOST_NAME"
+        rsync -raL --delete -P -e "ssh -i ./id_rsa" ./_site/ $HOST_NAME:$REMOTE_LOCATION
         echo "INFO:: Done!"
