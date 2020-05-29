@@ -3,17 +3,14 @@
 ## Setup
 
 ```bash
-bundle
 
-# Serve
-bundle exec jekyll serve
+# Install dependencies
+npm install
+bundle
 
 # Build
 bundle exec jekyll build
-```
 
-## Publish
-
-```bash
-./_automation/publish.fish
+# Serve
+bundle exec jekyll serve
 ```
