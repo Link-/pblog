@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  action:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    
+    - name: Assets build & deploy
+      env:
+        HOST_NAME: ${{ secrets.HOST_NAME }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        REMOTE_LOCATION: ${{ secrets.REMOTE_LOCATION }}
+      run: |
+        gem install bundler
+        echo "INFO:: Building..."
+        bundle exec jekyll build
+        echo "INFO:: Synching with remote $HOST_NAME"
+        echo "INFO:: Done!"
