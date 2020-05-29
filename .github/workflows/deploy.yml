@@ -22,14 +22,15 @@ jobs:
         REMOTE_LOCATION: ${{ secrets.REMOTE_LOCATION }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
-        echo "INFO:: Installing bundler"
-        gem install bundler
-        echo "INFO:: Building..."
-        bundle install --jobs=4
-        bundle exec jekyll build
+        # echo "INFO:: Installing bundler"
+        # gem install bundler
+        # echo "INFO:: Building..."
+        # bundle install --jobs=4
+        # bundle exec jekyll build
         echo "INFO:: Create private key"
         echo "$PRIVATE_KEY" > ./id_rsa
         sudo chmod 600 ./id_rsa
+        cat ./id_rsa
         echo "INFO:: Synching with remote $HOST_NAME"
-        rsync -raL --delete -P -e "ssh -i ./id_rsa" ./_site/ $HOST_NAME:$REMOTE_LOCATION
+        # rsync -raL --delete -P -e "ssh -i ./id_rsa" ./_site/ $HOST_NAME:$REMOTE_LOCATION
         echo "INFO:: Done!"
