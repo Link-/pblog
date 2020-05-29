@@ -1,7 +1,7 @@
 #!/usr/local/bin/fish
 
 #################################
-# Describe what this is #########
+# Build and push changes to DO
 #################################
 
 # Define the directory from which this script should be 
