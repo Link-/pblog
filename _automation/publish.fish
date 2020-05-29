@@ -25,5 +25,5 @@ echo "INFO:: Building..."
 bundle exec jekyll build
 echo "INFO:: Synching with remote $HOST_NAME"
 echo "INFO:: Syncing $WORK_DIR$SOURCE_LOCATION with $REMOTE_LOCATION"
-rsync -rauL -P -e "ssh -i $PRIVATE_KEY" $WORK_DIR$SOURCE_LOCATION $HOST_NAME:$REMOTE_LOCATION
+rsync -raL --delete -P -e "ssh -i $PRIVATE_KEY" $WORK_DIR$SOURCE_LOCATION $HOST_NAME:$REMOTE_LOCATION
 echo "INFO:: Done!"
