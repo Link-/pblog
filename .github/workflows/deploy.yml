@@ -24,7 +24,7 @@ jobs:
         echo "INFO:: Building..."
         bundle install --jobs=4
         bundle exec jekyll build
-        npm install
+        npm ci
 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v2.1.1
