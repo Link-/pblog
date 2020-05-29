@@ -22,11 +22,10 @@ jobs:
         REMOTE_LOCATION: ${{ secrets.REMOTE_LOCATION }}
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
-        echo "INFO:: Installing rsync and bundler"
-        sudo apt-get install rsync
+        echo "INFO:: Installing bundler"
         gem install bundler
         echo "INFO:: Building..."
-        bundle install
+        bundle install --jobs=4
         bundle exec jekyll build
         echo "INFO:: Create private key"
         echo "$PRIVATE_KEY" > ./id_rsa
