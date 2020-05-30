@@ -1,6 +1,11 @@
-A2. Learn how to Learn
-======================
-
+---
+layout: post
+title:  "A2. Learn how to Learn"
+date:   2020-05-30 13:29:02 +0200
+categories: book chapter a2
+sitemap:
+  exclude: 'yes'
+---
 The Fall
 ========
 

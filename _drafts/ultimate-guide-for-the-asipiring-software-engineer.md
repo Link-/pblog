@@ -1,5 +1,11 @@
-Ultimate Guide for the Aspiring Software Engineer
-=================================================
+---
+layout: post
+title:  "Ultimate Guide for the Aspiring Software Engineer"
+date:   2020-05-30 13:29:00 +0200
+categories: book chapter
+sitemap:
+  exclude: 'yes'
+---
 I will always remember how scary the period when I first entered the job market after University was. **My entire future depended on a set of decisions that as a young adult felt not ready for.** **There was too much uncertainty and too many unknowns.** I was walking in the dark and who likes that?
 
 Thousands of hours, dozens of books, millions of lines of code and hundreds of cringe-worthy mistakes later I developed the needed wisdom to successfully (or so I think) navigate the field of Software Engineering.
@@ -22,8 +28,8 @@ In general, this series of articles is **relevant to anyone who has taken or is 
 Chapters List
 =============
 
-1.  [Fundamentals not Ornaments](https://medium.com/@bassemdy/a1-fundamentals-not-ornaments-94b6ebb68dba)
-2.  [Learn how to Learn](https://medium.com/@bassemdy/a2-learn-how-to-learn-4d9db024786e)
+1.  [Fundamentals not Ornaments]({{ site.url }}{% link _drafts/a1-fundamentals-not-ornaments.md %})
+2.  [Learn how to Learn]({{ site.url }}{% link _drafts/a2-learn-how-to-learn.md %})
 3.  Practice Makes Perfect
 4.  Iteration is the only Constant
 5.  Master your Tools

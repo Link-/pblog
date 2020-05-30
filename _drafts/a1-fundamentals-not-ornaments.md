@@ -1,6 +1,11 @@
-A1. Fundamentals not Ornaments
-==============================
-
+---
+layout: post
+title:  "A1. Fundamentals not Ornaments"
+date:   2020-05-30 13:29:01 +0200
+categories: book chapter a1
+sitemap:
+  exclude: 'yes'
+---
 The Dirty Past
 ==============
 
