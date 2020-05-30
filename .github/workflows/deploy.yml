@@ -24,7 +24,7 @@ jobs:
       env:
         cache-name: node-modules
       with:
-        path: ./node_modules
+        path: node_modules
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
     
     # Restore the vendor/bundle folder
@@ -34,20 +34,19 @@ jobs:
       env:
         cache-name: ruby-gems
       with:
-        path: ./vendor
+        path: vendor/bundle
         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile.lock') }}
 
     - name: Install Depdencies
       run: |
-        echo "INFO:: Installing bundler"
         gem install bundler
-        bundle install --path vendor/bundle --jobs=4
+        bundle config set path 'vendor/bundle'
+        bundle install --jobs=4
+        npm ci
     
     - name: Build
       run: |
-        echo "INFO:: Building..."
         bundle exec jekyll build
-        npm ci
 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v2.1.1
