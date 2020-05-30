@@ -60,7 +60,11 @@ I have made an **absolute best effort at giving credit** and referencing materia
 About the Author
 ================
 
-TK
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
 
 Acknowledgments
 ===============
