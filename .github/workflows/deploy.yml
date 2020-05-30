@@ -17,12 +17,35 @@ jobs:
       with:
         ruby-version: '2.7'
     
-    - name: Build Assets
+    # Restore the node_modules folder
+    # from cache
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: node-modules
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    
+    # Restore the vendor/bundle folder
+    # from cache
+    - name: Cache ruby gems
+      uses: actions/cache@v2
+      env:
+        cache-name: ruby-gems
+      with:
+        path: ./vendor
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile.lock') }}
+
+    - name: Install Depdencies
       run: |
         echo "INFO:: Installing bundler"
         gem install bundler
+        bundle install --path vendor/bundle --jobs=4
+    
+    - name: Build
+      run: |
         echo "INFO:: Building..."
-        bundle install --jobs=4
         bundle exec jekyll build
         npm ci
 

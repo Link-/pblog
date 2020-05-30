@@ -6,7 +6,7 @@
 
 # Install dependencies
 npm install
-bundle
+bundle install --path vendor/bundle
 
 # Build
 bundle exec jekyll build
