@@ -91,3 +91,5 @@ That's it! Of course, this might not work the first time so you will need to tro
 
 1. [SAML Chrome Panel - Chrome Extension](https://chrome.google.com/webstore/detail/saml-chrome-panel/paijfdbeoenhembfhkhllainmocckace?hl=en)
 2. [Auth0 Rules Debugging Guide](https://auth0.com/docs/rules/guides/debug)
+
+*Disclaimer: This is not a [GitHub](https://github.com/) endorsed technical advice or recommendation. Use it at your own risk.*
