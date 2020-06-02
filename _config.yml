@@ -46,8 +46,8 @@ plainwhite:
   navigation:
     - title: Home
       url: "/"
-    - title: About
-      url: "/about"
+    # - title: About
+    #   url: "/about"
 
 # Build settings
 theme: plainwhite
