@@ -3,6 +3,10 @@ layout: post
 title:  "Auth0 Roles Management for GitHub Enterprise Server"
 date:   2020-06-02 10:00:00 +0200
 categories: ghes saml enterprise auth0
+sitemap:
+  lastmod: 2020-06-02
+  priority: 0.7
+  changefreq: 'weekly'
 ---
 The other day, I was working on enabling SAML on my test [GitHub Enterprise Server](https://github.com/enterprise) (GHES) instance using [Auth0](https://auth0.com/) (one of many identity platforms out there). I wanted to create an administrators group so its members are automatically escalated to **site administrators** as soon as they authenticate with the SSO url.
 
