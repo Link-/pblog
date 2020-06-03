@@ -53,8 +53,16 @@ Reference: https://github.com/aws-samples/aws-step-functions-long-lived-transact
 
 > Describe the use case
 
+## Learn Step Functions
+
+> Talk about the step functions lab and how to use it [stepfunctions_lab](https://github.com/Link-/stepfunctions_lab)
+
 ## Final thoughts
 
 > TBD
+
+### References
+
+- [AWS Step functions resources](https://aws.amazon.com/step-functions/resources/?step-functions.sort-by=item.additionalFields.postDateTime&step-functions.sort-order=desc)
 
 {% include disclaimer.html %}
