@@ -45,7 +45,7 @@ I believe the best way to communicate the subtleties of the good and the bad wit
 
 This is the simplest of the uses cases. Let's assume you have a system running maybe on [EC2](https://aws.amazon.com/ec2/) and you'd like to take backups every 12 hours. You don't have a backup management system and you'd like some way to orchestrate the steps needed to generate a backup and store it in a low cost storage system or service.
 
-You look at AWS Step Functions and think that, awesome, this service can help you achieve that. You can have a state machine created with a Lambda calling an API of your system to generate a backup. Then you'd like your workflow to check if the backup was successfull or not and wait a certain amount of time before you, for example, send an email to a group notifiying them of the backup's outcome. Using [CloudWatch](https://aws.amazon.com/cloudwatch/) events you can schedule that state machine to run every 12 hours.
+You look at AWS Step Functions and think: "Awesome, this service can help you achieve that". You can have a state machine, created with a Lambda, calling an API of your system to generate a backup. Then you'd like your workflow to check if the backup was successfull or not and wait a certain amount of time before you, for example, send an email to a group notifiying them of the backup's outcome. Using [CloudWatch](https://aws.amazon.com/cloudwatch/) events you can schedule that state machine to run every 12 hours.
 
 The workflow will look something like this:
 
@@ -89,11 +89,11 @@ There are many ways to setup the triggering event and here I name a few:
 
 **Cons:** 🌑
 1. You still have to put effort in setting up a monitoring solution for your workflows (if you don't have anything in place already).
-2. (This is a point that will repeat across use-cases) You need to make sure your back-end systems are integration friendly, as in, they have robust APIs you can rely on for the integration with Lambdas.
+2. (This is a point that will repeat across use-cases) You need to make sure your back-end systems are integration friendly. And what I mean by that is they have robust APIs you can rely on for the integration with Lambdas.
 
 ### 3. Process An Order Following A Manager'S Approval (Good but ⛅️)
 
-Now comes the (most) relatively complex part of this post. Building an event driven workflow and implementing signaling or as AWS refers to them as [callbacks](https://aws.amazon.com/about-aws/whats-new/2019/05/aws-step-functions-support-callback-patterns/). I have had the unfortunate (depends on how you look at it) responsbility to design a mobile on-boarding orchestration layer using Step Functions before callbacks were released sometime mid-2019.
+Now comes the (most) relatively complex part of this post. Building an event driven workflow and implementing signaling or as AWS refers to them as [callbacks](https://aws.amazon.com/about-aws/whats-new/2019/05/aws-step-functions-support-callback-patterns/). I have had the unfortunate (depends on how you look at it) reponsibility to design a mobile on-boarding orchestration layer using Step Functions before callbacks were released sometime mid-2019.
 
 That was a complete nightmare. I cannot go into the details of that implementation for confidentiality reasons but what I can do is show you how to implement an approval workflow with Step Functions and discuss the solution in enough detail for you to judge.
 
@@ -181,5 +181,8 @@ Here are some resources I recommend you take a look at:
 ## Final thoughts
 
 I personally hate technical fanaticism, we all know that there isn't a single product / tool / service in the market that answers all your needs or is a silver bullet to any problem. Keep an open mind and I hope this guide helps you get some clarity on this service and what it is **currently** best suited for. I hope down the road AWS keep upgrading this service because it is useful for many use cases and a joy to work with. Sometimes.
+
+> ❤️to [Ali Haydar](https://twitter.com/Alee_Haydar), [Jessica Ajami](https://twitter.com/JessieAjami) and [Abed Al Rahman El Ghali](https://www.linkedin.com/in/abed-al-rahman-el-ghali-86883520/) for reading drafts of this post
+
 
 {% include disclaimer.html %}
