@@ -21,7 +21,7 @@ Here's a simple animated example:
 
 <img src="{{ "/assets/img/2020/06/08/step_functions_demo.gif" | relative_url }}" alt="{{ site.plainwhite.name }}">
 
-This is a demo of the approval workflow (discussed below). As you can see the state machine starts with the Lambda: Process Order then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the Success or Failure tasks.
+This is a demo of the approval workflow (discussed below). As you can see, the state machine starts with the Lambda: Process Order then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the Success or Failure tasks.
 
 To make the example more concrete, let's think of this from a systems scenario. "Process Order" will receive an input, this will invoke a Lambda function which represents the integration with a back-end system, for example, think of an invoicing service you are running. When the response from the invoicing system comes (success or failure) the lambda will end its execution and the state machine will receive the output of that lambda. 
 
@@ -33,7 +33,7 @@ Once that order is confirmed in the order processing portal a signal will be sen
 
 There are 2 types of workflows supported: **Standard Workflows** and **Express Workflows**. The latter is designed for high-volume event processing workflows. With this service you pay by transition so it's important to also have workflows that are cost effective when dealing with high-event-rate workloads.
 
-I really like many of AWSs' documentation, so read more about the types of workflows and more here: [https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
+I really like many of AWSs' documentation, so read more about the types of workflows, and more, here: [https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 
 ## Use Cases: (Good | Bad)
 
