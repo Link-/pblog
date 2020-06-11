@@ -3,6 +3,7 @@ layout: post
 title:  "Auth0 Roles Management for GitHub Enterprise Server"
 date:   2020-06-02 10:00:00 +0200
 categories: ghes saml enterprise auth0
+image: /assets/img/2020/06/02/header_image_1280.png
 sitemap:
   lastmod: 2020-06-02
   priority: 0.7

@@ -3,6 +3,7 @@ layout: post
 title:  "Planning on using AWS Step Functions? Think again"
 date:   2020-06-08 18:00:00 +0200
 categories: aws architecture microservices patterns
+image: /assets/img/2020/06/08/header_image_1280.png
 sitemap:
   lastmod: 2020-06-08
   priority: 0.7
