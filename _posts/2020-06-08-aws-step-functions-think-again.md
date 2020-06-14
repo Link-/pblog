@@ -22,7 +22,7 @@ Here's a simple animated example:
 
 <img src="{{ "/assets/img/2020/06/08/step_functions_demo.gif" | relative_url }}" alt="{{ site.plainwhite.name }}">
 
-This is a demo of the approval workflow (discussed below). As you can see, the state machine starts with the Lambda: Process Order then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the Success or Failure tasks.
+This is a demo of the approval workflow (discussed below). As you can see, the state machine starts with the Lambda: "Process Order" then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the "Success" or "Failure" tasks.
 
 To make the example more concrete, let's think of this from a systems scenario. "Process Order" will receive an input, this will invoke a Lambda function which represents the integration with a back-end system, for example, think of an invoicing service you are running. When the response from the invoicing system comes (success or failure) the lambda will end its execution and the state machine will receive the output of that lambda. 
 
@@ -94,7 +94,7 @@ There are many ways to setup the triggering event and here I name a few:
 
 ### 3. Process An Order Following A Manager'S Approval (Good but ⛅️)
 
-Now comes the (most) relatively complex part of this post. Building an event driven workflow and implementing signaling or as AWS refers to them as [callbacks](https://aws.amazon.com/about-aws/whats-new/2019/05/aws-step-functions-support-callback-patterns/). I have had the unfortunate (depends on how you look at it) reponsibility to design a mobile on-boarding orchestration layer using Step Functions before callbacks were released sometime mid-2019.
+Now comes the most complex part of this post. Building an event driven workflow and implementing signaling or as AWS refers to them as [callbacks](https://aws.amazon.com/about-aws/whats-new/2019/05/aws-step-functions-support-callback-patterns/). I have had the unfortunate (depends on how you look at it) reponsibility to design a mobile on-boarding orchestration layer using Step Functions before callbacks were released sometime mid-2019.
 
 That was a complete nightmare. I cannot go into the details of that implementation for confidentiality reasons but what I can do is show you how to implement an approval workflow with Step Functions and discuss the solution in enough detail for you to judge.
 
@@ -157,7 +157,7 @@ Have you digested the complexity associated with use case #3? Now imagine that c
 Building mobile application back-ends is difficult enough as it is, with step functions you want to consider the following:
 
 1. Does your team have adequate knowledge and skills to take on the challenge?
-2. How will manage API versioning? What happens when you decide to add a step in your workflow but don't want to force your existing users to update their mobile app?
+2. How will you manage API versioning? What happens when you decide to add a step in your workflow but don't want to force your existing users to update their mobile app?
 3. Do your back-end systems have robust APIs you can easily integrate with? The core components of your workflows will be Lambdas or Activity workers (in a mobile back-end context). For these to do their job they will need to integrate with domain specific systems (invoicing system, customer relation management system, core banking system, etc...).
 4. Do your back-end systems support rollbacks in case of failure? Remember the point about transactionality. This type of (generally async) workflows cannot support transactions, so you need to design a cleanup process that allows you to recover from failure. You don't want your end-users to be stuck in a non-recoverable state. Because then you'll have to scramble to manually adjust the situation.
 5. You cannot "pause" a workflow and then resume it later. Well, you can with some workarounds but it's not a feature that comes off-the-shelf with Step Functions.
