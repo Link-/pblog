@@ -3,6 +3,7 @@ layout: post
 title:  "Fixing AWS API Gateway CORS problems with Terraform"
 date:   2020-06-10 18:00:00 +0200
 categories: aws architecture microservices api terraform
+image: /assets/img/2020/06/10/CORS_principle_header_1280x.png
 sitemap:
   lastmod: 2020-06-10
   priority: 0.7
