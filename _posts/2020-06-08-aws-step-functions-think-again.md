@@ -4,12 +4,12 @@ title:  "Planning on using AWS Step Functions? Think again"
 date:   2020-06-08 18:00:00 +0200
 categories: aws architecture microservices patterns
 image: /assets/img/2020/06/08/header_image_1280.png
+github: https://github.com/Link-/stepfunctions_lab
 sitemap:
   lastmod: 2020-06-08
   priority: 0.7
   changefreq: 'weekly'
 ---
-
 You're using [AWS](https://aws.amazon.com/) and your entire or part of your landscape depends on it. You're contemplating [AWS Step Functions](https://aws.amazon.com/step-functions/) for a workflow you need to build or maybe you're just curious and just want to explore this product. Carry on, I have some interesting insights that you will not find in the documentation right away.
 
 > TLDR; Step Functions is a great product for a specific set of use cases.

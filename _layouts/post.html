@@ -17,6 +17,9 @@ layout: default
     {%- endif -%}
   </div>
   <div class="post">
+    {%- if page.github -%}
+      {%- include github_container.html -%}
+    {%- endif -%}
     {{ content }}
   </div>
   {%- if site.plainwhite.disqus_shortname -%}
