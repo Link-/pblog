@@ -45,7 +45,7 @@ This guide assumes that you've already created an Auth0 account and you have an 
 }
 ```
 
-<img src="{{ "/assets/img/2020/06/02/ghes_local_auth0_app.jpg" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img src="{{ "/assets/img/2020/06/02/ghes_local_auth0_app.jpg" | relative_url }}">
 
 2. Create a new test user in `User Management > Users` with the following attributes (you can change those to whatever you'd like):
 
@@ -59,7 +59,7 @@ Email: thanos@github.local
 
 4. Assign the `Administrators` role to the user we just created in step #2
 
-<img src="{{ "/assets/img/2020/06/02/ghes_auth0_admin_role.jpg" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img src="{{ "/assets/img/2020/06/02/ghes_auth0_admin_role.jpg" | relative_url }}">
 
 Now, by default Auth0 does not map all the user attributes to the SAML assertions. In order to solve this problem and provide the `administrator` flag required by GHES ([read more about it here](https://help.github.com/en/enterprise/2.16/admin/user-management/using-saml#saml-attributes)) we need to intercept the authorization response before it goes back to GHES and inject that attribute.
 
@@ -93,7 +93,7 @@ function (user, context, callback) {
 }
 ```
 
-<img src="{{ "/assets/img/2020/06/02/ghes_auth0_rule.jpg" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img src="{{ "/assets/img/2020/06/02/ghes_auth0_rule.jpg" | relative_url }}">
 
 6. Log in with that account in GHES and that particular user should be promoted to administrator post-login.
 

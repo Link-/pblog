@@ -20,7 +20,7 @@ Step Functions are state machines (if you're not familiar with the term, that's 
 
 Here's a simple animated example:
 
-<img src="{{ "/assets/img/2020/06/08/step_functions_demo.gif" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img src="{{ "/assets/img/2020/06/08/step_functions_demo.gif" | relative_url }}">
 
 This is a demo of the approval workflow (discussed below). As you can see, the state machine starts with the Lambda: "Process Order" then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the "Success" or "Failure" tasks.
 
@@ -50,7 +50,7 @@ You look at AWS Step Functions and think: "Awesome, this service can help you ac
 
 The workflow will look something like this:
 
-> <img src="{{ "/assets/img/2020/06/08/FB8FAAE9-EA32-413B-B191-5381SSS1D38B8.png" | relative_url }}" alt="{{ site.plainwhite.name }}">
+> <img src="{{ "/assets/img/2020/06/08/FB8FAAE9-EA32-413B-B191-5381SSS1D38B8.png" | relative_url }}">
 
 > I built a simulation of this workflow for you with [Terraform](https://www.terraform.io/). You can build it in your AWS account yourself by following my guide here: [Backup Workflow Setup Guide](https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/backup_workflow). I highly recommend that you build this stack and explore all its different components (Step Functions, Lambda, IAM and CloudWatch).
 
@@ -100,7 +100,7 @@ That was a complete nightmare. I cannot go into the details of that implementati
 
 Let's dig in.
 
-<a href="https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/approval_workflow" target="_blank"><img src="{{ "/assets/img/2020/06/08/sfn_approval_workflow_architecture.png" | relative_url }}" alt="{{ site.plainwhite.name }}"></a>
+<a href="https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/approval_workflow" target="_blank"><img src="{{ "/assets/img/2020/06/08/sfn_approval_workflow_architecture.png" | relative_url }}"></a>
 
 The scenario is as follows: you receive an purchasing order from your front-end (website, mobile app, etc.) and before you push that order to your back-end system for delivery (or invoicing, notifications etc.) you want to receive the approval from a human. Again, this is merely a simulation to demonstrate the features of Step Functions.
 
@@ -123,7 +123,7 @@ The data flows like this:
 7. Upon calling the locally exposed endpoint `http://localhost:<port>/approval` our app, using the AWS SDK will call the `SendTaskSuccess` ordering our state machine to successfully transition to the next step
 8. Finally we will delete that message from the queue and based on the callback received by the state machine will move to Success (we are not handling a failure scenario)
 
-<a href="https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/approval_workflow" target="_blank"><img src="{{ "/assets/img/2020/06/08/approval_workflow_controller_app_screenshot.png" | relative_url }}" alt="{{ site.plainwhite.name }}"></a>
+<a href="https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/approval_workflow" target="_blank"><img src="{{ "/assets/img/2020/06/08/approval_workflow_controller_app_screenshot.png" | relative_url }}"></a>
 
 > I built this workflow for you with [Terraform](https://www.terraform.io/). You can build it in your AWS account yourself by following my guide here: [Approval Workflow Setup Guide](https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/approval_workflow). I highly recommend that you build this stack and explore all its different components (Step Functions, Lambda, IAM and CloudWatch).
 

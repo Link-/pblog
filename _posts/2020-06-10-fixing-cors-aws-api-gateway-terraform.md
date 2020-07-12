@@ -28,7 +28,7 @@ By default, your local setup is running on `http://localhost` or `http://127.0.0
 
 For "non simple" requests as [defined here](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Examples_of_access_control_scenarios) you will get the following error (in Chrome, slightly different in other browsers).
 
-<img alt="Access to blocked resource error in Chrome" src="{{ "/assets/img/2020/06/10/cors_error_chrome.png" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img alt="Access to blocked resource error in Chrome" src="{{ "/assets/img/2020/06/10/cors_error_chrome.png" | relative_url }}">
 
 To go around this error you will want:
 
@@ -283,7 +283,7 @@ We've done all this work so that we can actually start calling our API successfu
 
 If you've implemented the stack successfully you should be able to replace the `apiUri` variable in the javascript code and get an output similar to this:
 
-<img alt="Image showing a successful response from our API" src="{{ "/assets/img/2020/06/10/successfull_response.png" | relative_url }}" alt="{{ site.plainwhite.name }}">
+<img alt="Image showing a successful response from our API" src="{{ "/assets/img/2020/06/10/successfull_response.png" | relative_url }}">
 
 That's it!
 
