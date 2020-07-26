@@ -22,7 +22,7 @@ Long story short, let's discuss what I have built for backing up these files.
 
 ### Fish
 
-I use [fish shell](https://fishshell.com/). Judge me all you want, don't care. I like it. This is the first piece of the puzzle. The following fish function will sync a directory and all its content into a folder contained Dropbox.
+I use [fish shell](https://fishshell.com/). Judge me all you want, don't care. I like it. This is the first piece of the puzzle. The following fish function will sync a directory and all its content into a folder in Dropbox.
 
 ```
 # Create the folder that will contain our backup scripts
@@ -47,12 +47,13 @@ else
 end
 ```
 
-Don't forget to make the script an executable with:
+Don't forget to make the script executable with:
 ```
+# This wil change the file permission of your script to be: 0755
 chmod a+x ~/.backup/bin/<name-of-the-function>.fish
 ```
 
-This function will sync the directory and its entire subtree to the location specified on Dropbox. It also provides a `dry-run` paramter just for you to test it before running the real thing.
+The function above will sync the directory and its entire subtree to the location you specified on Dropbox. It also provides a `dry-run` paramter to test it before running the real thing, give it a spin before you move forward.
 
 ```
 # Just pass dry-run after the function name in your terminal
@@ -61,7 +62,9 @@ This function will sync the directory and its entire subtree to the location spe
 
 ### launchd
 
-This article ["how to use launchd to run services in macos"](https://medium.com/swlh/how-to-use-launchd-to-run-services-in-macos-b972ed1e352) does a great job in explaining `launchd` and its quirks. Check it out if you want to have the ability to customize the property list file below.
+This article ["how to use launchd to run services in macos"](https://medium.com/swlh/how-to-use-launchd-to-run-services-in-macos-b972ed1e352) does a great job in giving you a primer on `launchd`. Check it out before we start creating our agent.
+
+The agent below will run your `<name-of-the-function>.fish` exactly every night at 5 minutes past midnight. It will create output and error logs in `/tmp` and will run for the first time as soon you load the agent.
 
 1. Navigate to `~/Library/LaunchAgents`
 
@@ -117,18 +120,21 @@ touch com.<data identifier>.backup.plist
 
 ```
 launchctl load ~/Library/LaunchAgents/com.<data identifier>.backup.plist
+
+# You can also unload it with - but don't run this now!
+# launchctl unload ~/Library/LaunchAgents/com.<data identifier>.backup.plist
 ```
 
 5. Start the job
 
 ```
-launchctl start com.<data identifier>.backup.plist
+launchctl start ~/Library/LaunchAgents/com.<data identifier>.backup.plist
 ```
 
 6. Verify that the job's been added
 
 ```
-launchctl list | grep com.<data identifier>.backup.plist
+launchctl list | grep com.<data identifier>.backup
 ```
 
 #### StartCalendarInterval
@@ -153,6 +159,7 @@ Out of the entire definition, I think this is the most interesting part of the f
 | Minute  | Integer | Minute of hour (0..59)                   |
 
 If you want a job to run everyday at a designated time, just specify the `Hour` and `Minute` values and you're good to go! Make sure to go through this fantastic reference to spare yourself a lot of agony: [https://www.launchd.info/](https://www.launchd.info/)
+
 
 ### Troubleshooting
 
