@@ -49,7 +49,7 @@ jobs:
         bundle exec jekyll build
 
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.1.1
+      uses: easingthemes/ssh-deploy@191986574c0735ffad7ae1a297a414d6e6f95375
       env:
         SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         ARGS: "-raL --delete"
