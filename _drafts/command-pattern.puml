@@ -1,0 +1,52 @@
+@startuml command-pattern
+
+class Invoker {
+  << This class handles creating an instance 
+  and executing the appropriate command
+  based on the arguments provided >>
+  ==
+  - array commandsList
+  ---
+  + constructor()
+  + executeCommand(args)
+}
+
+interface Command {
+  << Command interface to be used for every
+  command implementation >>
+  ==
+  + name()
+  + validate()
+  + execute()
+}
+
+class GetComments {
+  << Command implementation that fetches
+  the comments of a given issue >>
+  ==
+  + name()
+  + validate()
+  + execute()
+}
+
+class GetIssueDetails {
+  << Command implementation that fetches
+  the body of an issue with its meta-data >>
+  ==
+  + name()
+  + validate()
+  + execute()
+}
+
+class cli {
+  << Our client. The main entry point
+  for our action >>
+}
+
+cli -> Invoker
+Invoker -> GetComments
+Invoker -> GetIssueDetails
+GetIssueDetails --|> Command
+GetComments --|> Command
+
+@enduml
