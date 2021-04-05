@@ -4,6 +4,7 @@ title: "Adopting the command design pattern for GitHub Actions"
 date: 2021-04-05 21:00:00 +0200
 categories: github actions design-patterns command best-practices
 github: https://github.com/Link-/simple-action
+image: /assets/img/2021/04/05/command_design_pattern_1280x.png
 sitemap:
   lastmod: 2021-04-05
   priority: 0.7
