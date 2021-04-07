@@ -11,6 +11,8 @@ sitemap:
   changefreq: "weekly"
 ---
 
+> Concept and article created by [@Link-](https://github.com/Link-) [@droidpl](https://github.com/droidpl) and [@steffen](https://github.com/steffen)
+
 > TLDR; You've explored [GitHub Actions](https://docs.github.com/en/actions) for a while, and you're now ready to create your own action and publish it to the marketplace. That's brilliant, before you do that, let's discuss adopting a simple design pattern that will make your creative journey much easier!
 
 ## Folder structure of an action
@@ -29,7 +31,7 @@ A simple Node.js action would look like this:
   └── package.json
 ```
 
-`index.js` is where all the logic is encapsulated and [`action.yml`](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file) is used to contain the action's metadata as well defining its interface (inputs and outputs).
+`index.js` is where all the logic is encapsulated and [`action.yml`](https://docs.github.com/en/actions/creating-actions/creating-a-javascript-action#creating-an-action-metadata-file) is used to contain the action's metadata as well as defining its interface (inputs and outputs).
 
 A lot of actions on the marketplace adopt this very simple structure, and it's great! However, not all actions are this simple.
 
@@ -140,7 +142,6 @@ program
 #### invoker.js
 
 ```javascript
-const { command } = require('commander');
 const commands = require('./commands');
 
 class Invoker {
@@ -156,7 +157,7 @@ class Invoker {
    */
   loadCommands() {
     commands.reduce((accumulator, command) => {
-      let instance = new command;
+      let instance = new command(this.options);
       accumulator[instance.name()] = instance;
       return accumulator;
     }, this.commandsList);
@@ -196,7 +197,7 @@ module.exports = Invoker
  * create that adopt this interface
  */
 class Command {
-  constructor (api, params) {
+  constructor (options) {
     if (this.constructor === Command) {
       throw new Error("Abstract classes can't be instantiated.")
     }
@@ -246,7 +247,7 @@ class GetComments extends Command {
     if (Object.keys(options).length <= 2) {
       throw new Error(`Command options must be provided`);
     }
-    return 'validate()';
+    return true;
   }
 
   /**
@@ -295,7 +296,7 @@ class GetIssueDetails extends Command {
     if (Object.keys(options).length <= 2) {
       throw new Error(`Command options must be provided`);
     }
-    return 'validate()';
+    return true;
   }
 
   /**
@@ -318,7 +319,7 @@ module.exports = GetIssueDetails
 
 #### commands/index.js
 
-This is a neat little trick that will allow us to import all the commands listed in it without looping through the content of the path and requiring each file individually.
+This is a neat little trick that will allow us to import all the commands listed in it without looping through the content of the path and requiring each file individually. When require is given the path of a folder, it'll look for an `index.js` file in that folder; if there is one, it uses that, and if there isn't, it fails. To prevent this failure, we create an `index.js` and require all the individual commands.
 
 ```javascript
 module.exports = [
