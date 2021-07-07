@@ -6,18 +6,18 @@
 
 # Install dependencies
 npm install
-bundle install --path vendor/bundle
+bundle install
 
-# Build
-bundle exec jekyll build
+# Server
+bundle exec jekyll serve --trace --livereload --drafts
 
-# Serve
-bundle exec jekyll serve
+# Generate og assets
+node generate_og_assets.js
 ```
 
 ### Sitemap settings
 
-```
+```markdown
 ---
 sitemap:
   lastmod: 2018-05-25
@@ -25,7 +25,7 @@ sitemap:
   changefreq: 'weekly'
 ---
 
-OR
+<!-- OR -->
 
 ---
 sitemap:
