@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Parse JSON like a boss with jq"
-date: 2020-08-29 22:00:00 +0200
+date: 2020-04-07 22:00:00 +0200
 categories: json utilities cli jq
 sitemap:
-  lastmod: 2020-08-29
+  lastmod: 2020-04-07
   priority: 0.7
   changefreq: "weekly"
 ---
@@ -233,26 +233,41 @@ curl -X GET "https://httpbin.org/json" -H "accept: application/json" \
       slides_count: .slideshow.slides | length \
     }"
 
-# Returns
+
+# Output
+# ======
+
 {
   "writer": "Yours Truly",
   "slides_count": 2
 }
 
+---
+
 # Concatenate all slide titles into pipe separated values
 # =======================================================
+
 curl -X GET "https://httpbin.org/json" -H "accept: application/json" \
     | jq '[.slideshow.slides[].title] | join (" | ")'
 
-# Returns
+
+# Output
+# ======
+
 "Wake up to WonderWidgets!, Overview"
+
+---
 
 # JSON encode and print the input as a string
 # ===========================================
+
 curl -X GET "https://httpbin.org/json" -H "accept: application/json" \
     | jq '. | tostring'
 
-# Returns
+
+# Output
+# ======
+
 "{\"slideshow\":{\"author\":\"Yours Truly\",\"date\":\"date of publication\",\"slides\":[{\"title\":\"Wake up to WonderWidgets!\",\"type\":\"all\"},{\"items\":[\"Why <em>WonderWidgets</em> are great\",\"Who <em>buys</em> WonderWidgets\"],\"title\":\"Overview\",\"type\":\"all\"}],\"title\":\"Sample Slide Show\"}}"
 
 
