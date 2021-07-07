@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "Adopting the command design pattern for GitHub Actions"
+tldr: "A simple design pattern that will help you build maintainable actions."
 date: 2021-04-05 21:00:00 +0200
 categories: github actions design-patterns command best-practices
 github: https://github.com/Link-/simple-action
-image: /assets/img/2021/04/05/command_design_pattern_1280x.png
+image: /assets/img/og_assets/2021-04-05-adopt-command-pattern-for-actions.png
 sitemap:
   lastmod: 2021-04-05
   priority: 0.7
@@ -52,6 +53,7 @@ I'm definitely not going to do a better job at explaining this concept more than
 ### Unified command interface
 
 <img alt="command pattern class diagram" src="{{ "/assets/img/2021/04/05/command-pattern.png" | relative_url }}">
+
 > There's a better looking class diagram here: <https://refactoring.guru/design-patterns/command#pseudocode>
 
 What the class diagram above is trying to explain is:
@@ -96,10 +98,10 @@ Our folder structure should now look like 👆. Let's look at the source code:
 #### cli.js
 
 ```javascript
-const meta = require('../package.json');
-const Invoker = require('./invoker');
-const core = require('@actions/core')
-const { Command } = require('commander');
+const meta = require("../package.json");
+const Invoker = require("./invoker");
+const core = require("@actions/core");
+const { Command } = require("commander");
 
 const program = new Command();
 
@@ -108,17 +110,29 @@ const program = new Command();
  * with core.getInput() only when a value has not been supplied via the CLI.
  * What this means is that, if you provide these parameters the values from
  * the action will be ignored.
- * 
+ *
  * This will guarantee that this tool will operate as an action but has an
  * alternative trigger via the CLI.
  */
 program
   .version(meta.version)
-  .option('-c, --command <command name>', 'Command to execute', core.getInput('command'))
-  .option('-t, --token <token>', 'Personal Access Token or GITHUB_TOKEN', core.getInput('token'))
-  .option('-i, --issue-number <number>', 'Issue number', core.getInput('issue-number'))
-  .option('-o, --org <org_name>', 'Organisation name', core.getInput('org'))
-  .option('-r, --repo <repo_name>', 'Repository name', core.getInput('repo'))
+  .option(
+    "-c, --command <command name>",
+    "Command to execute",
+    core.getInput("command")
+  )
+  .option(
+    "-t, --token <token>",
+    "Personal Access Token or GITHUB_TOKEN",
+    core.getInput("token")
+  )
+  .option(
+    "-i, --issue-number <number>",
+    "Issue number",
+    core.getInput("issue-number")
+  )
+  .option("-o, --org <org_name>", "Organisation name", core.getInput("org"))
+  .option("-r, --repo <repo_name>", "Repository name", core.getInput("repo"))
   .parse();
 
 /**
@@ -136,13 +150,13 @@ program
   } catch (Error) {
     core.setFailed(` ⚠️  ${Error.message}`);
   }
-})()
+})();
 ```
 
 #### invoker.js
 
 ```javascript
-const commands = require('./commands');
+const commands = require("./commands");
 
 class Invoker {
   constructor(options) {
@@ -165,20 +179,22 @@ class Invoker {
 
   /**
    * Runs a number of checks and attemps to execute a command
-   * @param {Object} options 
-   * @returns 
+   * @param {Object} options
+   * @returns
    */
   async executeCommand(options) {
     // It's possible to supply an empty string as a command name so we have
     // to guard against this
     if (!options.command) {
-      throw new Error("required option '-c, --command <command name>' command name must be supplied");
+      throw new Error(
+        "required option '-c, --command <command name>' command name must be supplied"
+      );
     }
     // We need to make sure the command name provided matches the name of one of
     // our loaded commands. Remember, loadCommands() uses the command name
     // as the key in the commandsList dictionary
     if (!(options.command in this.commandsList)) {
-      throw new Error(`${options.command} not found in the loaded commands`)
+      throw new Error(`${options.command} not found in the loaded commands`);
     }
     const command = this.commandsList[options.command];
     // If all the checks pass, we're good to execute the command
@@ -186,7 +202,7 @@ class Invoker {
   }
 }
 
-module.exports = Invoker
+module.exports = Invoker;
 ```
 
 #### interfaces/command.js
@@ -197,26 +213,26 @@ module.exports = Invoker
  * create that adopt this interface
  */
 class Command {
-  constructor (options) {
+  constructor(options) {
     if (this.constructor === Command) {
-      throw new Error("Abstract classes can't be instantiated.")
+      throw new Error("Abstract classes can't be instantiated.");
     }
   }
-  
-  name () {
-    throw new Error("Method 'name()' must be implemented first")
+
+  name() {
+    throw new Error("Method 'name()' must be implemented first");
   }
 
-  validate () {
-    throw new Error("Method 'validate()' must be implemented first")
+  validate() {
+    throw new Error("Method 'validate()' must be implemented first");
   }
 
-  async execute () {
-    throw new Error("Method 'execute()' must be implemented first")
+  async execute() {
+    throw new Error("Method 'execute()' must be implemented first");
   }
 }
 
-module.exports = Command
+module.exports = Command;
 ```
 
 #### commands/getComments.js
@@ -224,15 +240,15 @@ module.exports = Command
 This is a sample command implementation
 
 ```javascript
-const Command = require('../interfaces/command')
+const Command = require("../interfaces/command");
 
 class GetComments extends Command {
   constructor() {
-    super()
+    super();
   }
 
   name() {
-    return 'get_comments';
+    return "get_comments";
   }
 
   /**
@@ -240,7 +256,7 @@ class GetComments extends Command {
    * the command. Here we are doing a simple test just to illustrate the
    * purpose of this method.
    *
-   * @param {Object} options 
+   * @param {Object} options
    * @returns validation result
    */
   validate(options) {
@@ -259,13 +275,13 @@ class GetComments extends Command {
   async execute(options) {
     this.validate(options);
     return JSON.stringify({
-      'status': 'OK',
-      'output': `${this.name()} executed successfully 🙌`
+      status: "OK",
+      output: `${this.name()} executed successfully 🙌`,
     });
   }
 }
 
-module.exports = GetComments
+module.exports = GetComments;
 ```
 
 #### commands/getIssueDetails.js
@@ -273,15 +289,15 @@ module.exports = GetComments
 This is another sample command implementation.
 
 ```javascript
-const Command = require('../interfaces/command')
+const Command = require("../interfaces/command");
 
 class GetIssueDetails extends Command {
   constructor() {
-    super()
+    super();
   }
 
   name() {
-    return 'get_issue_details';
+    return "get_issue_details";
   }
 
   /**
@@ -289,7 +305,7 @@ class GetIssueDetails extends Command {
    * the command. Here we are doing a simple test just to illustrate the
    * purpose of this method.
    *
-   * @param {Object} options 
+   * @param {Object} options
    * @returns validation result
    */
   validate(options) {
@@ -308,13 +324,13 @@ class GetIssueDetails extends Command {
   async execute(options) {
     this.validate(options);
     return JSON.stringify({
-      'status': 'OK',
-      'output': `${this.name()} executed successfully 🙌`
+      status: "OK",
+      output: `${this.name()} executed successfully 🙌`,
     });
   }
 }
 
-module.exports = GetIssueDetails
+module.exports = GetIssueDetails;
 ```
 
 #### commands/index.js
@@ -322,10 +338,7 @@ module.exports = GetIssueDetails
 This is a neat little trick that will allow us to import all the commands listed in it without looping through the content of the path and requiring each file individually. When require is given the path of a folder, it'll look for an `index.js` file in that folder; if there is one, it uses that, and if there isn't, it fails. To prevent this failure, we create an `index.js` and require all the individual commands.
 
 ```javascript
-module.exports = [
-  require('./getComments'),
-  require('./getIssueDetails')
-]
+module.exports = [require("./getComments"), require("./getIssueDetails")];
 ```
 
 ## Easier tests, better extensibility

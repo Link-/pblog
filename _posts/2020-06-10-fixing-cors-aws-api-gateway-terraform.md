@@ -1,9 +1,10 @@
 ---
 layout: post
 title:  "Fixing AWS API Gateway CORS problems with Terraform"
-date:   2020-06-10 18:00:00 +0200
+tldr: ""
+date: 2020-06-10 18:00:00 +0200
 categories: aws architecture microservices api terraform
-image: /assets/img/2020/06/10/CORS_principle_header_1280x.png
+image: /assets/img/og_assets/2020-06-10-fixing-cors-aws-api-gateway-terraform.png
 sitemap:
   lastmod: 2020-06-10
   priority: 0.7
@@ -13,7 +14,8 @@ While working on my [AWS Step Functions post](https://blog.bassemdy.com/2020/06/
 
 Even though it comes with a relatively steep learning curve, depending on your background of course, I really like [Terraform](https://www.terraform.io/). It makes managing the infrastructure changes much more simple after you invest the time in building the templates initially.
 
-## CORS... 
+## CORS
+
 > The Security Feature That Everyone Overrides but Few Understand
 
 I'm really not gonna do a better job explaining CORS than Mozilla's MDN docs. Why don't you head over there and read a bit about the topic. I'll wait...
@@ -32,16 +34,16 @@ For "non simple" requests as [defined here](https://developer.mozilla.org/en-US/
 
 To go around this error you will want:
 
-1 . Your endpoints to respond with the following headers:
+1. Your endpoints to respond with the following headers:
 
-```html
-Access-Control-Allow-Origin: http://<example_url.com>
-Access-Control-Allow-Methods: POST, GET, OPTIONS
-Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
-Access-Control-Max-Age: 86400
-```
+    ```html
+    Access-Control-Allow-Origin: http://<example_url.com>
+    Access-Control-Allow-Methods: POST, GET, OPTIONS
+    Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+    Access-Control-Max-Age: 86400
+    ```
 
-2 . To expose an endpoint that responds to "OPTIONS" http(s) requests. "Preflighted requests" first send an HTTP request by the OPTIONS method to the resource on the other domain, to determine if the actual request is safe to send. [More on those here](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request).
+1. To expose an endpoint that responds to "OPTIONS" http(s) requests. "Preflighted requests" first send an HTTP request by the OPTIONS method to the resource on the other domain, to determine if the actual request is safe to send. [More on those here](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request).
 
 ## Terraform
 
@@ -89,7 +91,8 @@ In [Terraform](https://www.terraform.io/) we will need to create the following r
 I've commented the code so that you can get as much information as possible.
 
 **Our `main.tf` will look as follows:**
-```
+
+```hcl
 provider "aws" {
   profile                 = var.aws_profile
   region                  = var.aws_region
@@ -238,7 +241,8 @@ module "cors" {
 ```
 
 **Our `variables.tf`:**
-```
+
+```hcl
 variable "aws_profile" {
   default     = "default"
   description = "AWS profile you'd like to use. Default = default"
@@ -261,7 +265,8 @@ variable "api_gateway_api_name" {
 ```
 
 **And finally our `output.tf` file:**
-```
+
+```hcl
 /**
  * We would want terraform to fetch our API's deployment URI
  * we will need it for our request!

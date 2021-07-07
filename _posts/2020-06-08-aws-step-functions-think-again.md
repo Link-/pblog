@@ -1,9 +1,10 @@
 ---
 layout: post
 title:  "Planning on using AWS Step Functions? Think again"
-date:   2020-06-08 18:00:00 +0200
+tldr: "Deep dive into AWS Step Functions. Step Functions is a great product for a specific set of use cases."
+date: 2020-06-08 18:00:00 +0200
 categories: aws architecture microservices patterns
-image: /assets/img/2020/06/08/header_image_1280.png
+image: /assets/img/og_assets/2020-06-08-aws-step-functions-think-again.png
 github: https://github.com/Link-/stepfunctions_lab
 sitemap:
   lastmod: 2020-06-08
@@ -24,7 +25,7 @@ Here's a simple animated example:
 
 This is a demo of the approval workflow (discussed below). As you can see, the state machine starts with the Lambda: "Process Order" then transitions to the Task "Request Approval". Following that, the Task "Request Approval" transitions to either the "Success" or "Failure" tasks.
 
-To make the example more concrete, let's think of this from a systems scenario. "Process Order" will receive an input, this will invoke a Lambda function which represents the integration with a back-end system, for example, think of an invoicing service you are running. When the response from the invoicing system comes (success or failure) the lambda will end its execution and the state machine will receive the output of that lambda. 
+To make the example more concrete, let's think of this from a systems scenario. "Process Order" will receive an input, this will invoke a Lambda function which represents the integration with a back-end system, for example, think of an invoicing service you are running. When the response from the invoicing system comes (success or failure) the lambda will end its execution and the state machine will receive the output of that lambda.
 
 The state machine will then automatically transition to "Request Approval". This step will, for example, push a message to a queue (SQS) and sleep. The sleep is by design, as the state machine cannot move forward until that message in the queue is processed. This time, it's not a Lambda that will provide the bridge with your back-end systems, it's [SQS](https://aws.amazon.com/sqs/). Let's imagine you have an order processing portal which is connected to the same queue the state machine is. This system will continously pull messages from the queue and present them in a UI for a human to process.
 
@@ -38,7 +39,7 @@ I really like many of AWSs' documentation, so read more about the types of workf
 
 ## Use Cases: (Good | Bad)
 
-By now, I'm sure you're impressed by the possibilities of this service and you're not wrong. I was too. However, it always felt like this service is still not mature enough even though it's a few years old. I've spent the last year and a half designing a high workload orchestration layer as the back-end for a mobile application using Step Functions. During this period I have accumulated a lot of insights into what works well and what doesn't. 
+By now, I'm sure you're impressed by the possibilities of this service and you're not wrong. I was too. However, it always felt like this service is still not mature enough even though it's a few years old. I've spent the last year and a half designing a high workload orchestration layer as the back-end for a mobile application using Step Functions. During this period I have accumulated a lot of insights into what works well and what doesn't.
 
 I believe the best way to communicate the subtleties of the good and the bad with this service is through use cases. So below, I describe 5 generic uses cases that cover a broad range of Step Functions' features and I label them as Good ☀️or Bad 🌧or Good but ⛅️ based on whether I believe Step Functions is the appropriate tool for the job.
 
@@ -55,6 +56,7 @@ The workflow will look something like this:
 > I built a simulation of this workflow for you with [Terraform](https://www.terraform.io/). You can build it in your AWS account yourself by following my guide here: [Backup Workflow Setup Guide](https://github.com/Link-/stepfunctions_lab/tree/master/src/workflows/backup_workflow). I highly recommend that you build this stack and explore all its different components (Step Functions, Lambda, IAM and CloudWatch).
 
 **Pros:** ☀️
+
 1. Your input is limited to information about the backup process
 2. Everything the Lambda needs can be passed with environment variables and it has the capacity to call external systems in many different ways
 3. CloudWatch will guarantee that your workflow runs on schedule
@@ -63,6 +65,7 @@ The workflow will look something like this:
 6. The solution is relatively easy to build and doesn't require maintenance
 
 **Cons:** 🌑
+
 1. Lambdas can run for a maximum of 15 minutes. I'm pretty sure few bakcup jobs take less than 15 minutes and either way this doesn't really scale well and could be a potential problem down the line.
 2. You pay for the execution time of your Lambda functions. Meaning, if your backup job takes a long time you will have to think better about your costs.
 
@@ -75,11 +78,13 @@ Let's move on to more complex scenarios.
 This is a cool use case. I like the scenarios where you can fire a workflow and forget about it with little consequences. This is definitely one of them. This workflow is very similar to the scheduled job and will most likely adopt a similar setup with the exception that the trigger (start execution) of this workflow will come from another event.
 
 There are many ways to setup the triggering event and here I name a few:
+
 1. Use [AWS API Gateway](https://aws.amazon.com/api-gateway/) to expose an endpoint that will create a new state machine execution
 2. Use [AWS EventBridge](https://aws.amazon.com/eventbridge/) a new service launched in 2019 with the sole purpose of managing events and integrations between systems.
 3. Of course CloudWatch remains a viable option for this use case as well.
 
 **Pros:** ☀️
+
 1. This is not a business critial use case so the consequences of a failed workflow execution are not catastrophic.
 2. If the invoice requires input from multiple systems and if the output of one system is the input for another, this is an examplary scenario for Step Functions!
     - You will have one Lambda extract information from system A and push the output to another Lambda which will in turn pass it on to system B.
@@ -89,6 +94,7 @@ There are many ways to setup the triggering event and here I name a few:
 6. Changes to the workflow are not a concern, so versioning is not a problem here, because you have no direct interaction with end users. You can treat this as a complete black box.
 
 **Cons:** 🌑
+
 1. You still have to put effort in setting up a monitoring solution for your workflows (if you don't have anything in place already).
 2. (This is a point that will repeat across use-cases) You need to make sure your back-end systems are integration friendly. And what I mean by that is they have robust APIs you can rely on for the integration with Lambdas.
 
@@ -130,6 +136,7 @@ The data flows like this:
 Simple, eh?
 
 **Pros:** ☀️
+
 1. Cost of this whole setup is miniscule. Why?
     - You will be charged $0.40 per 1 million requests to the queue (SQS): [Reference](https://aws.amazon.com/sqs/pricing/)
     - You will be charged $0.025 per 1,000 state transitions for Step Functions: [Reference](https://aws.amazon.com/step-functions/pricing/)
@@ -140,6 +147,7 @@ Simple, eh?
 4. Infrastructure is relatively easy to setup and deploy especially with tools like [CloudFormation](https://aws.amazon.com/cloudformation/) or [Terraform](https://www.terraform.io/).
 
 **Cons:** 🌑
+
 1. This setup is very difficult to maintain! Think of your CI/CD pipelines for this, how will they take form?
 2. Versioning is extremely complex! What happens when you want to introduce a change but also be backward compatible? Imagine having to maintain multiple workflow versions, handle routing, logging.
 3. With async workflows, managing state is expensive. You really have to think of your negative flows and what happens when your queue goes down. In short, your workflow will go stale. You need to identify and build measures to cleanup failed workflows.
@@ -167,7 +175,7 @@ There are many more things to consider when deciding to go for Step Functions, m
 
 ## Learn Step Functions
 
-Whether you're going to adopt this service or not, it's still worth learning about and building a few workflows. Nothing beats a good-old hands-on hacking. 
+Whether you're going to adopt this service or not, it's still worth learning about and building a few workflows. Nothing beats a good-old hands-on hacking.
 
 Here are some resources I recommend you take a look at:
 
@@ -184,6 +192,5 @@ Here are some resources I recommend you take a look at:
 I personally hate technical fanaticism, we all know that there isn't a single product / tool / service in the market that answers all your needs or is a silver bullet to any problem. Keep an open mind and I hope this guide helps you get some clarity on this service and what it is **currently** best suited for. I hope down the road AWS keep upgrading this service because it is useful for many use cases and a joy to work with. Sometimes.
 
 > ❤️to [Ali Haydar](https://twitter.com/Alee_Haydar), [Jessica Ajami](https://twitter.com/JessieAjami) and [Abed Al Rahman El Ghali](https://www.linkedin.com/in/abed-al-rahman-el-ghali-86883520/) for reading drafts of this post
-
 
 {% include disclaimer.html %}

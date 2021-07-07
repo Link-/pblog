@@ -1,10 +1,11 @@
 ---
 layout: post
 title: "Using GitHub Apps to call the APIs"
+tldr: "An overview of GitHub Apps and an introduction to ghtoken's basic use cases."
 date: 2021-07-07 20:00:00 +0200
 categories: github github-apps api rest graphql jwt
 github: https://github.com/Link-/github-app-bash
-image: https://opengraph.githubassets.com/8f5cb41df04b18e5a1589c7718505c60bf0a6b97aac785b60fc5fbe56e2d5d60/Link-/github-app-bash
+image: /assets/img/og_assets/2021-07-07-using-github-apps-to-query-api.png
 sitemap:
   lastmod: 2021-07-07
   priority: 0.7
@@ -349,3 +350,5 @@ $ ghtoken revoke \
 ## Where can I find `ghtoken`?
 
 `ghtoken` is hosted and maintained in this repository: <https://github.com/Link-/github-app-bash>
+
+{% include disclaimer.html %}
