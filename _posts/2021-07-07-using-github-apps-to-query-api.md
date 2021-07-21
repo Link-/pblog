@@ -37,7 +37,7 @@ We're going to ignore basic authentication in this post and will focus on the Pe
 | Requires installation                                          | no                          | no                     | yes                                  |
 | Bound by API rate limits                                       | yes                         | yes                    | yes                                  |
 | Impersonate authenticated account                              | yes                         | yes                    | yes                                  |
-| Act as the app (do not impersonate an authenticated account) | no                          | no                     | yes                                  |
+| Act as the app (do not impersonate an authenticated account)   | no                          | no                     | yes                                  |
 
 _Of course there are many more distinctions but for the purposes of this post, I'll be focusing on those only_.
 
@@ -285,7 +285,7 @@ That's quite a lengthy process, right? Yeah, I thought so. It is also slightly i
 
 This gif illustrates how `ghtoken` works, it's the steps as described before with a bunch of boilerplate code to handle different scenarios:
 
-<img src="{{ "/assets/img/2021/07/07/ghtoken_process_animation.gif" | relative_url }}">
+<img alt="ghtoken process description" src="{{ "/assets/img/2021/07/07/ghtoken_process_animation.gif" | relative_url }}">
 
 #### Basic flows
 
