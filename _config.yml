@@ -47,6 +47,8 @@ plainwhite:
   navigation:
     - title: Home
       url: "/"
+    - title: Public Speaking
+      url: "/public-speaking"
     - title: RSS Feed
       url: "/feed.xml"
 
