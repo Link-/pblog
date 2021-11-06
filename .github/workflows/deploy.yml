@@ -10,6 +10,7 @@ jobs:
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: live
 
     steps:
     - uses: actions/checkout@v1
@@ -56,4 +57,4 @@ jobs:
         SOURCE: "_site/"
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_LOCATION }}
+        TARGET: ${{ secrets.REMOTE_DEPLOY_PATH }}
