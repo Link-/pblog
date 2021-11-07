@@ -23,7 +23,7 @@ These instructions are designed to be an attachment to my video series on podman
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/5Tv52d4FNtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-:warning: Follow these instructions at **your own risk**
+⚠️ Follow these instructions at **your own risk**
 
 ```sh
 # Start a podman machine with 2 vCPUs and 4GBs of RAM and 15GBs of Disk space
@@ -107,5 +107,3 @@ $ pip3 install docker-compose
 # Test by getting the version of docker-compose
 $ docker-compose -v
 ```
-
-{% include disclaimer.html %}
