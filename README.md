@@ -1,5 +1,7 @@
 # pblog
 
+[![Deploy](https://github.com/Link-/pblog/actions/workflows/deploy.yml/badge.svg)](https://github.com/Link-/pblog/actions/workflows/deploy.yml)
+
 > TLDR; Personal blog
 
 ## Setup

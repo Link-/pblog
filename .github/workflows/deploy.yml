@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '_posts/**'
+      - 'assets/**'
+      - '_layouts/**'
+      - '_includes/**'
 
 jobs:
 
