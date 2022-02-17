@@ -9,6 +9,7 @@ on:
       - 'assets/**'
       - '_layouts/**'
       - '_includes/**'
+  workflow_dispatch:
 
 jobs:
 
