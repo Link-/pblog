@@ -35,9 +35,6 @@ plainwhite:
   dark_mode: true
   show_excerpts: true
 
-  # Google analytics
-  analytics_id: "UA-168048712-1"
-
   social_links:
     twitter: bassemdy
     github: link-
