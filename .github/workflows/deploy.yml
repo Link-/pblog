@@ -9,6 +9,8 @@ on:
       - 'assets/**'
       - '_layouts/**'
       - '_includes/**'
+      - '**.md'
+  workflow_dispatch:
 
 jobs:
 
@@ -63,3 +65,4 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.REMOTE_DEPLOY_PATH }}
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
