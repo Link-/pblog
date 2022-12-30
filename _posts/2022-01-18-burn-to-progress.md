@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Sometimes, you have to watch an organisation burn for it to progress"
+title: "Sometimes, you have to watch an organisation burn to progress"
 tldr: "Overcompensation maintains the status quo. Without a transparent feedback loop, the wrong message is communicated upwards and no progress is ever made."
 date: 2022-01-18 15:00:00 +0200
 categories: enterprise startups lessons management
