@@ -3,7 +3,10 @@ const path = require('path');
 const jimp = require('jimp');
 const parseMD = require('parse-md').default;
 const readingTime = require('reading-time');
-const template_path = './og_templates/template_1200x600.png';
+// Define a constant which is the path of this script file
+const __dir = path.resolve();
+const template_path = `${__dir}/og_templates/template_1200x600.png`;
+
 
 async function generate_og_asset(post_path) {
   // Filename
@@ -16,9 +19,9 @@ async function generate_og_asset(post_path) {
   // Load the template image
   const template = await jimp.read(template_path);
   // Load the fonts
-  const title_font = await jimp.loadFont('./og_templates/BaiJamjuree-Bold.ttf.fnt');
-  const tldr_font = await jimp.loadFont('./og_templates/BaiJamjuree-Medium.ttf.fnt');
-  const metadata_font = await jimp.loadFont('./og_templates/BaiJamjuree-Light.ttf.fnt');
+  const title_font = await jimp.loadFont(`${__dir}/og_templates/BaiJamjuree-Bold.ttf.fnt`);
+  const tldr_font = await jimp.loadFont(`${__dir}/og_templates/BaiJamjuree-Medium.ttf.fnt`);
+  const metadata_font = await jimp.loadFont(`${__dir}/og_templates/BaiJamjuree-Light.ttf.fnt`);
 
   // Calculate spacing between title and tldr and increase space if title is long
   const title_length = metadata.title;
@@ -47,14 +50,17 @@ async function generate_og_asset(post_path) {
   template.print(metadata_font, 695, 505, year);
 
   // Save the image
-  template.write(`./assets/img/og_assets/${file_name}.png`);
+  template.write(`${__dir}/assets/img/og_assets/${file_name}.png`);
 }
 
 async function main() {
   // get all files in a directory
-  const files = await fs.promises.readdir('./_posts/');
+  const files = await fs.promises.readdir(`${__dir}/_posts/`);
   files.forEach(file => {
-    generate_og_asset(`./_posts/${file}`);
+    if (!file.endsWith(`.md`)) {
+      return;
+    }
+    generate_og_asset(`${__dir}/_posts/${file}`);
   });
 };
 
