@@ -44,9 +44,11 @@ plainwhite:
   navigation:
     - title: Home
       url: "/"
-    - title: Public Speaking
+    - title: Public speaking
       url: "/public-speaking"
-    - title: RSS Feed
+    - title: glich.stream
+      url: "https://blog.glich.stream"
+    - title: RSS feed
       url: "/feed.xml"
 
 # Build settings
