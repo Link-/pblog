@@ -20,7 +20,7 @@ jobs:
     environment: live
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: '3.1.3'
@@ -57,7 +57,7 @@ jobs:
         bundle exec jekyll build
 
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@191986574c0735ffad7ae1a297a414d6e6f95375
+      uses: easingthemes/ssh-deploy@164a3e861eade8146ae8bd738d66b107e70ad6cf
       env:
         SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         ARGS: "-raL --delete"
