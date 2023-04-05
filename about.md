@@ -6,4 +6,3 @@ sitemap:
   exclude: 'yes'
 ---
 
-Bla bla bla bla...
