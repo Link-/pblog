@@ -8,6 +8,8 @@ sitemap:
 
 | Title                                                                                                                                                    | Event                  | Type          | Date              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------- | ----------------- |
+| [Contributing without the setup with Codespaces]()                                                                                                       | GitHub Event            | Live Stream  | May 3, 2023       |
+| [EGGS 307: THE FUTURE IS NOW – EXPLORING AI AND THE FUTURE OF JOBS IN TECH](https://www.eggscast.com/photos/eggs-307-the-future-is-now-exploring-ai-and-the-future-of-jobs-in-tech-with-bassem-dghaidi) | Eggs the Podcast       | Podcast Guest | April 27, 2023    |
 | Introduction to backend security                                                                                                                         | SE Factory             | Tech Talk     | April 3, 2023     |
 | [Reducing DevOps toolchain complexity with GitHub](https://youtu.be/o2QgGM-kgmY)                                                                        | GitHub Galaxy 2023     | Speaker       | March 31, 2023    |
 | [Scaling Web Applications with Bassem Dghaidi & Ahmed Elemam - Tech Podcast بالعربي](https://www.youtube.com/watch?v=mN8l4Zuy8e8)                          | Ahmed Elemam           | Podcast Guest | March 5, 2023      |
