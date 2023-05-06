@@ -126,7 +126,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.plainwhite.analytics_id }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
     gtag('config', '{{ site.plainwhite.analytics_id }}');
   </script>
@@ -135,6 +138,7 @@
   {% if site.plainwhite.search %}
   <script src="/assets/js/simple-jekyll-search.min.js"></script>
   <script src="/assets/js/search.js"></script>
+  <script defer data-domain="blog.bassemdy.com" src="https://plausible.io/js/script.js"></script>
   {% endif %}
 </body>
 
