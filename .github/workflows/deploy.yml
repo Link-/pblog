@@ -12,8 +12,11 @@ on:
       - '**.md'
   workflow_dispatch:
 
-jobs:
+concurrency:
+  group: "deploy"
+  cancel-in-progress: true
 
+jobs:
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
