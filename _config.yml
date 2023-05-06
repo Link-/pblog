@@ -27,7 +27,7 @@ permalink: /:year/:month/:day/:categories/:title:output_ext
 
 plainwhite:
   name: Bassem Dghaidi
-  tagline: Solution Architect @ GitHub 
+  tagline: Sr. SWE @ GitHub
   date_format: "%b %-d, %Y"
   # Disable search
   search: false
