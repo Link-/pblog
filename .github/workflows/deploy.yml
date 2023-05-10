@@ -31,7 +31,7 @@ jobs:
     # Restore the node_modules folder
     # from cache
     - name: Cache node modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: node-modules
       with:
