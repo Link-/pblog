@@ -4,7 +4,7 @@ title: "Understanding and utilizing team dynamics for success"
 tldr: "Taking on the roles within a team that best serve the team and demonstrating value can set individuals up for success and improve the entire team."
 date: 2022-12-30 13:00:00 +0200
 categories: leadership team-dynamics roles collaboration growth
-image: 
+image: /assets/img/og_assets/2022-12-30-on-roles-and-functions.png
 sitemap:
   lastmod: 2022-12-30
   priority: 0.7

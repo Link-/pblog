@@ -4,7 +4,7 @@ title: "How much can you really earn creating content on Youtube!"
 tldr: "The sober truth of how much you really earn creating content on Youtube. I've been creating content for 2 years, with 150+ videos uploaded and I'm sharing my experience."
 date: 2023-05-06 10:00:00 +0200
 categories: content-creation youtube experience growth monetization income revenue
-image: 
+image: /assets/img/og_assets/2023-05-06-how-much-you-really-make-creating-content.png
 sitemap:
   lastmod: 2023-05-06
   priority: 0.7
