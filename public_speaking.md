@@ -38,6 +38,6 @@ sitemap:
 
 ### Profile pictures
 
-| Variation 1 | Variation 2 |
-| -- | -- |
-| <a href="/assets/img/bio/profile_square_2759x2759.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 1" width="300" src="/assets/img/bio/profile_square_2759x2759.jpg" /></a> | <a href="/assets/img/bio/profile_bassem_1436x.png" target="_blank"><img alt="bassem dghaidi profile picture variation 2" width="300" src="/assets/img/bio/profile_bassem_1436x.png" /></a> |
+| Variation 1 | Variation 2 | Variation 3 |
+| -- | -- | -- |
+| <a href="/assets/img/bio/profile_square_2759x2759.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 1" width="300" src="/assets/img/bio/profile_square_2759x2759.jpg" /></a> | <a href="/assets/img/bio/profile_bassem_1436x.png" target="_blank"><img alt="bassem dghaidi profile picture variation 2" width="300" src="/assets/img/bio/profile_bassem_1436x.png" /></a> | <a href="/assets/img/bio/profile_bassem_vertical_x2048.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 3" width="300" src="/assets/img/bio/profile_bassem_vertical_x2048.jpg" /></a> |
