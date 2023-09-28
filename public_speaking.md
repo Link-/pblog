@@ -10,6 +10,7 @@ sitemap:
 
 | Title                                                                                                                                                                                                                                  | Event                            | Type          | Date               |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|---------------|--------------------|
+| The future is now: the AI assisted programming paradigm shift                                                                                                             | [TECH KNOW FEST](https://www.thenextgen.nl/events/techknowfest)                     | Keynote   | September 28, 2023        |
 | [GitHub in my Day Job S1E5: Contributing without the setup with Codespaces](https://www.youtube.com/watch?v=mBsvSFbcujg)                                                                                                             | GitHub Event                     | Live Stream   | May 3, 2023        |
 | [EGGS 307: THE FUTURE IS NOW – EXPLORING AI AND THE FUTURE OF JOBS IN TECH](https://www.eggscast.com/photos/eggs-307-the-future-is-now-exploring-ai-and-the-future-of-jobs-in-tech-with-bassem-dghaidi)                                | Eggs the Podcast                 | Podcast Guest | April 27, 2023     |
 | Introduction to backend security                                                                                                                                                                                                       | SE Factory                       | Tech Talk     | April 3, 2023      |
@@ -33,7 +34,7 @@ sitemap:
 
 > Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists. He was a founding member of SE Factory, a software engineering bootcamp that has become Lebanon's leading training program for aspiring software engineers.
 
-> Bassem is also an active podcaster and content creator who shares his technical and career-related insights on major social media platforms. His experience and expertise in software engineering, DevOps, and technology education have positioned him as a respected thought leader and mentor in the industry.
+> Bassem is also an active podcaster and content creator who shares his technical and career-related insights on major social media platforms.
 
 ### Profile pictures
 
