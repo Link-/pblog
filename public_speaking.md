@@ -28,13 +28,15 @@ sitemap:
 
 ## Speaker Bio
 
-> Bassem Dghaidi is a Senior Software Engineer at GitHub, where he is currently focused on building the next generation of GitHub Actions. With a career spanning over 15 years in software engineering, Bassem has worked across various industries, including TechEd, car manufacturing, FinTech, and transportation and logistics, where he led the architecture and implementation of large-scale solutions.
+> Bassem Dghaidi enjoys solving hard problems in internet scale distributed systems and takes pride in abolishing organisational inefficiencies and adopting a cross-disciplined approach to problem solving.
 
-> In his previous role, Bassem worked closely with some of the largest corporate customers and Fortune 500 companies as a trusted advisor. He helped these enterprises optimise their software development lifecycle and adopt DevOps best practices.
+> Bassem is a Senior Software Engineer at GitHub, where he is currently focused on building the next generation of GitHub Actions. With a career spanning over 15 years, Bassem worked across various industries, including TechEd, car manufacturing, FinTech, transportation and logistics.
 
-> Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists. He was a founding member of SE Factory, a software engineering bootcamp that has become Lebanon's leading training program for aspiring software engineers.
+> In a previous role, Bassem worked closely with some of the largest corporate customers and Fortune 500 companies as a trusted advisor. He helped these enterprises optimise their software development lifecycle and adopt DevOps best practices.
 
-> Bassem is also an active podcaster and content creator who shares his technical and career-related insights on major social media platforms.
+> Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists. He was a founding member of SE Factory, a technical career accelerator that has become Lebanon’s leading training program for aspiring software engineers.
+
+> Bassem is also an active podcaster and content creator sharing his technical and career-related insights on major social media platforms.
 
 ### Profile pictures
 
