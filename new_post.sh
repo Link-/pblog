@@ -8,6 +8,8 @@ TITLE="untitled"
 WORKDIR="$(pwd)/_posts"
 TODAY=$(date +%Y-%m-%d) # 2018-01-01
 NOW=$(date -R | cut -d' ' -f5-) # 12:00:00 +0200
+YEAR=$(date +%Y) # 2024
+MONTH=$(date +%m) # 01
 FILENAME="${TODAY}-${TITLE}.md"
 
 cat <<EOF > "${WORKDIR}/${FILENAME}"
@@ -26,3 +28,8 @@ sitemap:
 EOF
 
 echo "Created: ${WORKDIR}/${FILENAME}"
+
+# Create the directory to store image assets
+IMG_PATH="$(pwd)/assets/img/${YEAR}/${MONTH}"
+mkdir -p "${IMG_PATH}" || true
+echo "Created: ${IMG_PATH}"
