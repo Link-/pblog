@@ -4,7 +4,7 @@ title:  "Navigating startup choices: my top 10 evaluation tips"
 tldr: "This article offers an insightful guide for those considering joining a startup, especially in a founding engineer role. It emphasizes important factors to consider."
 date: 2024-01-18 22:05:59 +0100
 categories: startups evaluation tips engineering culture
-image: tbd
+image: /assets/img/og_assets/2024-01-18-navigating-startup-choices-my-top-10-evaluation-tips.png
 sitemap:
     lastmod: 2024-01-18
     priority: 0.7
