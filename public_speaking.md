@@ -39,9 +39,7 @@ sitemap:
 > 
 > In a previous role, Bassem worked closely with some of the largest corporate customers and Fortune 500 companies as a trusted advisor. He helped these enterprises optimise their software development lifecycle and adopt DevOps best practices.
 > 
-> Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists. He was a founding member of SE Factory, a technical career accelerator that has become Lebanon’s leading training program for aspiring software engineers.
-> 
-> Bassem is also an active podcaster and content creator sharing his technical and career-related insights on major social media platforms.
+> Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists, he is also a LinkedIn Top Voice, a course author, an active podcaster and content creator sharing his technical and career-related insights on major social media platforms.
 
 ### Profile pictures
 
