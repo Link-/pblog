@@ -28,20 +28,10 @@ jobs:
       with:
         ruby-version: '3.1.3'
     
-    # Restore the node_modules folder
-    # from cache
-    - name: Cache node modules
-      uses: actions/cache@v3
-      env:
-        cache-name: node-modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-    
     # Restore the vendor/bundle folder
     # from cache
     - name: Cache ruby gems
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
         cache-name: ruby-gems
       with:
@@ -53,8 +43,7 @@ jobs:
         gem install bundler
         bundle config set path 'vendor/bundle'
         bundle install --jobs=4
-        npm ci
-    
+
     - name: Build
       run: |
         bundle exec jekyll build
