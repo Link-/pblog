@@ -5,7 +5,9 @@
 set -uo nounset # halt script on command fail in pipeline
 
 TITLE="untitled"
-WORKDIR="$(pwd)/_posts"
+# Get the root directory by going one level up from the script directory
+ROOT_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
+WORKDIR="${ROOT_DIR}/_posts"
 TODAY=$(date +%Y-%m-%d) # 2018-01-01
 NOW=$(date -R | cut -d' ' -f5-) # 12:00:00 +0200
 YEAR=$(date +%Y) # 2024
@@ -30,6 +32,6 @@ EOF
 echo "Created: ${WORKDIR}/${FILENAME}"
 
 # Create the directory to store image assets
-IMG_PATH="$(pwd)/assets/img/${YEAR}/${MONTH}"
+IMG_PATH="${ROOT_DIR}/assets/img/${YEAR}/${MONTH}"
 mkdir -p "${IMG_PATH}" || true
 echo "Created: ${IMG_PATH}"
