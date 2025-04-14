@@ -35,9 +35,7 @@ sitemap:
 
 > Bassem Dghaidi enjoys solving hard problems in internet scale distributed systems and takes pride in abolishing organisational inefficiencies and adopting a cross-disciplined approach to problem solving.
 >
-> Bassem is a Senior Software Engineer at GitHub, where he is currently focused on building the next generation of GitHub Actions. With a career spanning over 15 years, Bassem worked across various industries, including TechEd, car manufacturing, FinTech, transportation and logistics.
->
-> In a previous role, Bassem worked closely with some of the largest corporate customers and Fortune 500 companies as a trusted advisor. He helped these enterprises optimise their software development lifecycle and adopt DevOps best practices.
+> Bassem is a Senior Software Engineer at GitHub, where he is currently focused on building the next generation of GitHub Actions. With a career spanning over 15 years, Bassem worked closely with some of the largest corporate customers and Fortune 500 companies as a trusted advisor across various industries, including TechEd, car manufacturing, FinTech, transportation and logistics.
 >
 > Apart from his work at GitHub, Bassem is passionate about empowering the next generation of technologists, he is also a LinkedIn Top Voice, a course author, an active podcaster and content creator sharing his technical and career-related insights on major social media platforms.
 
