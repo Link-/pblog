@@ -4,7 +4,7 @@ title:  "How Model Context Protocol (MCP) Works"
 tldr: "Breakdown of the Model Context Protocol (MCP) that enables AI applications to communicate with external data sources and tools through a client-server architecture."
 date: 2025-04-12 21:49:57 +0200
 categories: mcp model-context-protocol programming llm ai
-image: tbd
+image: /assets/img/og_assets/2025-04-12-how-model-context-protocol-mcp-works.png
 render_mermaid: true
 sitemap:
     lastmod: 2025-04-12

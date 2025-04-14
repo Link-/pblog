@@ -46,8 +46,6 @@ plainwhite:
       url: "/"
     - title: Public speaking
       url: "/public-speaking"
-    - title: glich.stream
-      url: "https://blog.glich.stream"
     - title: RSS feed
       url: "/feed.xml"
 
