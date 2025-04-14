@@ -58,8 +58,56 @@ sequenceDiagram
   User ->> Host: Close application
   Host ->> Client: Terminate
   Client ->> Server: Disconnect
-
 ```
+
+<details>
+   <summary>➕ Source code for the sequence diagram</summary>
+
+   <pre>
+      sequenceDiagram
+      participant User as User
+      participant Host as VScode / Claude / ChatGPT Desktop
+      participant Client as MCP Client
+      participant Server as MCP Server
+      participant Resource as External Service
+      User ->> Host: Open application
+      Host ->> Client: Initialize client
+      Client ->> Server: initialize request with capabilities
+      Server ->> Client: initialize response with capabilities
+      Client ->> Server: initialized notification
+      User ->> Host: Make a request
+      Host ->> Client: Forward request
+      alt Resource Request (Application-controlled)
+         Note right of Client: A Resource is context data from the server<br/>Examples: file contents, code history, database schemas<br/>Resources help LLMs understand context
+         Client ->> Server: resources/list or resources/read
+         Server ->> Resource: Fetch data (e.g., read files, query DB)
+         Resource ->> Server: Return data
+         Server ->> Client: Resource content
+         Client ->> Host: Add context to LLM prompt
+      else Tool Execution (Model-controlled)
+         Note right of Client: A Tool is a function the LLM can call<br/>Examples: web search, file writing, API calls<br/>Tools let LLMs take actions
+         Client ->> Server: tools/call
+         Server ->> Resource: Execute operation
+         Resource ->> Server: Return result
+         Server ->> Client: Tool result
+         Client ->> Host: Show result to LLM
+      else Sampling Request (Server-initiated)
+         Note right of Server: Sampling lets servers request LLM generations<br/>Examples: analyzing data, making decisions<br/>Enables agentic/recursive workflows
+         Server ->> Client: sampling/createMessage
+         Client ->> Host: Request LLM generation
+         Host ->> User: Request approval (optional)
+         User ->> Host: Approve request
+         Host ->> Client: Return generation
+         Client ->> Server: Generation result
+      end
+      Client ->> Host: Return response
+      Host ->> User: Display result
+      User ->> Host: Close application
+      Host ->> Client: Terminate
+      Client ->> Server: Disconnect
+   </pre>
+
+</details>
 
 ## Why MCP Servers Are Needed
 
