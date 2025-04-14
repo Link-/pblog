@@ -43,9 +43,8 @@ sitemap:
 
 ### Profile pictures
 
-| Variation   | Image                                                                                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Variation 1 | <a href="/assets/img/bio/profile_square_2759x2759.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 1" width="300" src="/assets/img/bio/profile_square_2759x2759.jpg" /></a>           |
-| Variation 2 | <a href="/assets/img/bio/profile_bassem_2527x.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 2" width="300" src="/assets/img/bio/profile_bassem_2527x.jpg" /></a>                   |
-| Variation 3 | <a href="/assets/img/bio/profile_bassem_vertical_x2048.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 3" width="300" src="/assets/img/bio/profile_bassem_vertical_x2048.jpg" /></a> |
-| Variation 4 | <a href="/assets/img/bio/bassem_3_1080x1080.png" target="_blank"><img alt="bassem dghaidi profile picture variation 4" width="300" src="/assets/img/bio/bassem_3_1080x1080.png" /></a>                       |
+| Variation   | Image                                                                                                                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Variation 1 | <a href="/assets/img/bio/profile_square_2759x2759.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 1" width="300" src="/assets/img/bio/profile_square_2759x2759.jpg" /></a> |
+| Variation 2 | <a href="/assets/img/bio/profile_bassem_2805.jpg" target="_blank"><img alt="bassem dghaidi profile picture variation 2" width="300" src="/assets/img/bio/profile_bassem_2805.jpg" /></a>           |
+| Variation 4 | <a href="/assets/img/bio/bassem_3_1080x1080.png" target="_blank"><img alt="bassem dghaidi profile picture variation 4" width="300" src="/assets/img/bio/bassem_3_1080x1080.png" /></a>             |
