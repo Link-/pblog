@@ -12,9 +12,11 @@ sitemap:
     changefreq: 'monthly'
 ---
 
-The Model Context Protocol (MCP) enables seamless communication between AI applications (clients) and external data sources or tools (servers). Here's a simple sequence diagram showing how MCP servers work:
+The Model Context Protocol (MCP) enables seamless communication between AI applications (clients) and external data sources or tools (servers).
 
-## MCP Client - Server Interactions
+## MCP Client - Server interactions
+
+Here's a simple sequence diagram showing how MCP servers work:
 
 ```mermaid
 sequenceDiagram
@@ -109,11 +111,9 @@ sequenceDiagram
 
 </details>
 
-## Why MCP Servers Are Needed
+## Why are MCP servers needed?
 
-MCP servers are essential components in the Model Context Protocol architecture for several important reasons:
-
-## Separation of Concerns
+### Separation of concerns
 
 The client-server architecture in MCP follows a key design principle: separation of concerns.
 
@@ -171,6 +171,10 @@ Why Not Have the Client Do Everything?
    - Users can choose which servers to connect to
    - Different security policies can be applied to different servers
    - Enables granular permission management
+
+## How do I start?
+
+Grab the SDK for your favourite programming language: https://github.com/modelcontextprotocol and start building!
 
 ## My short explanation of the sequence diagram
 
