@@ -1,51 +1,55 @@
 ---
 layout: default
 ---
-{%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
-<div class="post-container">
-  <a class="post-link" href="{{ page.url | relative_url }}">
-    <h2 class="post-title">{{ page.title | escape }}</h2>
-  </a>
-  <div class="post-meta">
-    <div class="post-date"><i class="icon-calendar"></i>{{ page.date | date: date_format }}</div>
-    {%- if page.categories.size > 0 -%}
-    <ul class="post-categories">
-      {%- for tag in page.categories -%}
-      <li>{{ tag }}</li>
-      {%- endfor -%}
-    </ul>
-    {%- endif -%}
+<div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+<article class="article-shell">
+  <header class="article-header shell">
+    <a class="back-link" href="{{ "/" | relative_url }}"><span aria-hidden="true">←</span> All notes</a>
+    <div class="article-heading">
+      <div class="post-kicker">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+        <span>{{ content | number_of_words | divided_by: 220 | plus: 1 }} min read</span>
+      </div>
+      <h1>{{ page.title }}</h1>
+      {% if page.tldr != "" %}<p class="article-deck">{{ page.tldr }}</p>{% endif %}
+      {% if page.categories.size > 0 %}
+        <ul class="tag-list" aria-label="Topics">
+          {% for tag in page.categories %}<li>{{ tag | replace: "-", " " }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="article-layout shell">
+    <aside class="article-aside" aria-label="Article information">
+      <div class="author-card">
+        <img src="{{ "/assets/portfolio.jpeg" | relative_url }}" alt="" width="52" height="52">
+        <div><strong>{{ site.plainwhite.name }}</strong><span>{{ site.plainwhite.tagline }}</span></div>
+      </div>
+      <div class="share-block">
+        <span>Share</span>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" aria-label="Share on LinkedIn">in</a>
+        <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}" aria-label="Share on X">X</a>
+      </div>
+    </aside>
+
+    <div class="prose article-content" data-article-content>
+      {%- if page.github -%}
+        <aside class="repo-callout">
+          <span>Explore the code behind this article</span>
+          <a href="{{ page.github }}">View repository <span aria-hidden="true">↗</span></a>
+        </aside>
+      {%- endif -%}
+      {{ content }}
+    </div>
   </div>
-  <div class="post">
-    {%- if page.github -%}
-      {%- include github_container.html -%}
-    {%- endif -%}
-    {{ content }}
-  </div>
-  {% if page.render_mermaid -%}
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-    document.querySelectorAll('pre > code.language-mermaid').forEach((codeBlock) => {
-      codeBlock.parentElement.outerHTML = `<pre class="mermaid">${codeBlock.textContent}</pre>`;
-    });
-  </script>
-  {% endif -%}
-  {%- if site.plainwhite.disqus_shortname -%}
-  <div id="disqus_thread" style="margin-top:25px"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = '{{ page.url | absolute_url }}';
-      this.page.identifier = '{{ page.url | absolute_url }}';
-    };
-    (function () {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://{{ site.plainwhite.disqus_shortname }}.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-      powered by Disqus.</a></noscript>
-  {%- endif -%}
-</div>
+
+  <footer class="article-footer shell">
+    <p>Thanks for reading.</p>
+    <h2>Keep following the thread.</h2>
+    <div>
+      <a class="button button-primary" href="{{ "/" | relative_url }}#notes">More notes</a>
+      <a class="text-link" href="{{ "/feed.xml" | relative_url }}">Subscribe via RSS <span aria-hidden="true">→</span></a>
+    </div>
+  </footer>
+</article>

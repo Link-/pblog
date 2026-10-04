@@ -11,7 +11,8 @@
     "reading-time": "^1.5.0"
   },
   "scripts": {
-    "generate": "node generate_og_asset.js"
+    "generate": "node generate_og_asset.js",
+    "generate:all": "node generate_og_asset.js --force"
   },
   "repository": {
     "type": "git",

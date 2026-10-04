@@ -1,145 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    {%- include head.html -%}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="{{ "/" | relative_url }}" aria-label="{{ site.plainwhite.name }} — home">
+          <span class="brand-mark" aria-hidden="true">BD</span>
+          <span>
+            <strong>{{ site.plainwhite.name }}</strong>
+            <small>Software, systems &amp; people</small>
+          </span>
+        </a>
 
-<head>
-  {%- include head.html -%}
-</head>
-
-<body>
-  <main class="container">
-    <section class="about">
-      <a href="/"><img src="{{ "/assets/portfolio.jpeg" | relative_url }}" alt="{{ site.plainwhite.name }}" style="border-radius: 50%; object-fit: cover; width: 150px; height: 150px; border: 2px solid #ddd;"></a>
-      <h2 id="title">
-        <a href="/">{{ site.plainwhite.name }}</a>
-      </h2>
-      <p class="tagline">{{ site.plainwhite.tagline }}</p>
-      <ul class="social">
-        {%- if site.plainwhite.social_links.github -%}
-        <a href="https://github.com/{{ site.plainwhite.social_links.github }}">
-          <li>
-            <i class="icon-github-circled"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.linkedIn -%}
-        <a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}">
-          <li>
-            <i class="icon-linkedin-squared"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.twitter -%}
-        <a href="https://twitter.com/{{ site.plainwhite.social_links.twitter }}">
-          <li>
-            <i class="icon-twitter-squared"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.instagram -%}
-        <a href="https://instagram.com/{{ site.plainwhite.social_links.instagram }}">
-          <li>
-            <i class="icon-instagram"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.facebook -%}
-        <a href="https://facebook.com/{{ site.plainwhite.social_links.facebook }}">
-          <li>
-            <i class="icon-facebook"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.youtube -%}
-        <a href="https://youtube.com/{{ site.plainwhite.social_links.youtube }}">
-          <li>
-            <i class="icon-youtube"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.pinterest -%}
-        <a href="https://pinterest.com/{{ site.plainwhite.social_links.pinterest }}">
-          <li>
-            <i class="icon-pinterest"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.dribbble -%}
-        <a href="https://dribbble.com/{{ site.plainwhite.social_links.dribbble }}">
-          <li>
-            <i class="icon-dribbble"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.flickr -%}
-        <a href="https://flickr.com/{{ site.plainwhite.social_links.flickr }}">
-          <li>
-            <i class="icon-flickr"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.telegram -%}
-        <a href=" https://t.me/{{ site.plainwhite.social_links.telegram }}">
-          <li>
-            <i class="icon-telegram"></i>
-          </li>
-        </a>
-        {%- endif -%}
-        {%- if site.plainwhite.social_links.soundcloud -%}
-        <a href=" https://soundcloud.com/{{ site.plainwhite.social_links.soundcloud }}">
-          <li>
-            <i class="icon-soundcloud"></i>
-          </li>
-        </a>
-        {%- endif -%}
-      </ul>
-      {%- if site.plainwhite.navigation -%}
-      <nav class="navigation">
-        <ul>
+        <nav class="site-nav" aria-label="Primary navigation">
           {% for link in site.plainwhite.navigation %}
-          <li>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
+            <a href="{{ link.url | relative_url }}"{% if page.url == link.url %} aria-current="page"{% endif %}>{{ link.title }}</a>
           {% endfor %}
-        </ul>
-      </nav>
-      {%- endif -%}
-      <p>&copy;
-        {{ "now" | date: "%Y" }}</p>
-      {%- if site.plainwhite.dark_mode -%}
-      <div>
-        <p>Dark Mode
-          <i class="icon-moon"></i>
-          <label class="switch">
-            <input type="checkbox" id="dark-mode-toggle">
-            <span class="slider round" onclick="toggleDarkMode()"></span>
-          </label>
-        </p>
+        </nav>
+
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode">
+          <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+          <span class="sr-only" data-theme-label>Switch theme</span>
+        </button>
       </div>
-      <script type="text/javascript" src="/assets/js/darkmode.js"></script>
-      {%- endif -%}
-    </section>
-    <section class="content">
+    </header>
+
+    <main id="main-content">
       {{ content }}
-    </section>
-  </main>
-  {%- if site.plainwhite.analytics_id -%}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.plainwhite.analytics_id }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    </main>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', '{{ site.plainwhite.analytics_id }}');
-  </script>
-  {%- endif -%}
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          <strong>{{ site.plainwhite.name }}</strong>
+          <p>Notes on building software, leading teams, and learning in public.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/{{ site.plainwhite.social_links.github }}">GitHub</a>
+          <a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}">LinkedIn</a>
+          <a href="https://youtube.com/{{ site.plainwhite.social_links.youtube }}">YouTube</a>
+          <a href="{{ "/feed.xml" | relative_url }}">RSS</a>
+        </div>
+        <p class="copyright">&copy; {{ "now" | date: "%Y" }} {{ site.plainwhite.name }}</p>
+      </div>
+    </footer>
 
-  {% if site.plainwhite.search %}
-  <script src="/assets/js/simple-jekyll-search.min.js"></script>
-  <script src="/assets/js/search.js"></script>
-  {% endif %}
-  <script defer data-domain="blog.bassemdy.com" src="https://plausible.io/js/script.js"></script>
-</body>
-
+    <script src="{{ "/assets/js/site.js" | relative_url }}" defer></script>
+    <script defer data-domain="blog.bassemdy.com" src="https://plausible.io/js/script.js"></script>
+  </body>
 </html>

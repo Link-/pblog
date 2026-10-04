@@ -3,7 +3,7 @@
 .PHONY: all upgrade test build serve new clean og_assets rename_posts help
 
 # Default target
-all: build rename_posts generate_og_assets
+all: rename_posts generate_og_assets build
 	@echo "All tasks completed successfully."
 
 # Upgrade dependencies
@@ -11,7 +11,7 @@ upgrade:
 	@echo "Upgrading Ruby dependencies..."
 	bundle update
 	@echo "Upgrading Node dependencies..."
-	npm update
+	npm --prefix script update
 
 # Run tests
 test:
@@ -46,7 +46,7 @@ rename_posts:
 # Generate OG assets for all posts
 generate_og_assets:
 	@echo "Generating OG assets for posts..."
-	node ./script/generate_og_asset.js
+	npm --prefix script run generate
 	@echo "OG assets generated successfully."
 
 # Clean up generated files

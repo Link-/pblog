@@ -1,57 +1,78 @@
 ---
 layout: default
 ---
-
-{%- if page.title -%}
-  <h1 class="page-heading">{{ page.title }}</h1>
-{%- endif -%}
-
-{{ content }}
-
-{%- if site.posts.size > 0 -%}
-  <ul class="posts">
-    <li class="posts-labelgroup" id="posts-labelgroup">
-      <h1 id="posts-label">posts</h1>
-      {% if site.plainwhite.search %}
-      <div class="search-container">
-        <div class="search-section">
-          <i class="icon-search"></i>
-          <input type="text" name="search" id="searchbar" autocomplete="off" aria-label="search in posts">
-        </div>
-        <div class="search-results" id="search-results" data-placeholder="No Results" style="display: none;"></div>
+<section class="hero">
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Ramblings of a self-taught software engineer</p>
+      <h1>Ideas for building<br><em>better systems.</em></h1>
+      <p class="hero-intro">A collection of notes from experience: software architecture, engineering leadership, developer tools, and the lessons hiding inside hard problems. Some are brief; others go deeper.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#notes">Browse the notes</a>
+        <a class="text-link" href="{{ "/public-speaking/" | relative_url }}">Explore talks <span aria-hidden="true">↗</span></a>
       </div>
-      {% endif %}
-    </li>
+    </div>
+    <div class="hero-portrait">
+      <div class="portrait-frame">
+        <img src="{{ "/assets/portfolio.jpeg" | relative_url }}" alt="Portrait of Bassem Dghaidi" width="560" height="560">
+      </div>
+      <p><span aria-hidden="true">●</span> Senior software engineer, speaker, and relentlessly curious builder.</p>
+    </div>
+  </div>
+</section>
 
-    {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          <h2 class="post-title">{{ post.title | escape }}</h2>
-        </a>
-        <div class="post-meta">
-          <div class="post-date">
-            <i class="icon-calendar"></i>
-            {{ post.date | date: date_format }}
+{% assign featured = site.posts.first %}
+{% if featured %}
+<section class="featured shell" aria-labelledby="featured-title">
+  <div class="section-heading">
+    <p class="eyebrow">Latest field note</p>
+    <span class="section-rule"></span>
+  </div>
+  <a class="featured-card" href="{{ featured.url | relative_url }}">
+    <div class="featured-art" aria-hidden="true">
+      <span class="art-orbit orbit-one"></span>
+      <span class="art-orbit orbit-two"></span>
+      <span class="art-core">01</span>
+    </div>
+    <div class="featured-copy">
+      <div class="post-kicker">
+        <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%B %-d, %Y" }}</time>
+        <span>{{ featured.content | number_of_words | divided_by: 220 | plus: 1 }} min read</span>
+      </div>
+      <h2 id="featured-title">{{ featured.title }}</h2>
+      <p>{{ featured.tldr | default: featured.excerpt | strip_html | truncatewords: 34 }}</p>
+      <span class="read-link">Read the note <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</section>
+{% endif %}
+
+<section class="writing shell" id="notes" aria-labelledby="notes-title">
+  <div class="section-heading section-heading-large">
+    <div>
+      <p class="eyebrow">The archive</p>
+      <h2 id="notes-title">Notes</h2>
+    </div>
+    <p>{{ site.posts.size }} notes drawn from experience in technology, leadership, and the work between.</p>
+  </div>
+
+  <div class="post-list">
+    {% for post in site.posts offset:1 %}
+      <article class="post-row">
+        <div class="post-number" aria-hidden="true">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</div>
+        <div class="post-row-main">
+          <div class="post-kicker">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
+            {% if post.categories.first %}<span>{{ post.categories.first | replace: "-", " " }}</span>{% endif %}
           </div>
-          {%- if post.categories.size > 0-%}
-          <ul class="post-categories">
-            {%- for tag in post.categories -%}
-            <li>{{ tag }}</li>
-            {%- endfor -%}
-          </ul>
-          {%- endif -%}
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p>{{ post.tldr | default: post.excerpt | strip_html | truncatewords: 28 }}</p>
         </div>
-        <div class="post">
-          {%- if site.show_excerpts -%}
-            {{ post.excerpt }}
-          {%- endif -%}
+        <div class="post-row-meta">
+          <span>{{ post.content | number_of_words | divided_by: 220 | plus: 1 }} min</span>
+          <span class="row-arrow" aria-hidden="true">↗</span>
         </div>
-      </li>
-    {%- endfor -%}
-  </ul>
-
-  <!-- <p class="feed-subscribe"><svg class="svg-icon orange">
-		<use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
-	</svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p> -->
-{%- endif -%}
+      </article>
+    {% endfor %}
+  </div>
+</section>

@@ -169,7 +169,7 @@ Acknowledgments
 References
 ----------
 
-\[1\] Sharan B. Merriam, “Andragogy and Self-Directed Learning: Pillars of Adult Learning Theory — Merriam — 2002 — New Directions for Adult and Continuing Education — Wiley Online Library,” _Androgogy Self-Directed Learn._, vol. 2001, no. 89, pp. 3–14, 2001.
+\[1\] Sharan B. Merriam, “Andragogy and Self-Directed Learning: Pillars of Adult Learning Theory — Merriam — 2002 — New Directions for Adult and Continuing Education — Wiley Online Library,” _Androgogy Self-Directed Learn._, vol. 2001, no. 89, pp. 3-14, 2001.
 
 * * *
 

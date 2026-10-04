@@ -21,7 +21,7 @@ title:  "${TITLE}"
 tldr: "TBD"
 date: ${TODAY} ${NOW}
 categories: tbd
-image: tbd
+image: /assets/img/og_assets/${TODAY}-${TITLE}.png
 sitemap:
     lastmod: ${TODAY}
     priority: 0.7
