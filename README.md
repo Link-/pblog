@@ -19,7 +19,7 @@ The site is built with Jekyll and deployed as static files to the existing serve
 
 - Ruby 3.1.3
 - Bundler
-- Node.js 20
+- Node.js 24
 - npm
 
 ## Local setup

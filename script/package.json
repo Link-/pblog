@@ -4,10 +4,13 @@
   "description": "Open Graph image generator for blog posts",
   "main": "generate_og_asset.js",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
-    "handlebars": "^4.7.8",
+    "handlebars": "^4.7.9",
     "parse-md": "^3.0.3",
-    "puppeteer": "^22.8.2",
+    "puppeteer": "^25.12.0",
     "reading-time": "^1.5.0"
   },
   "scripts": {
@@ -24,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Link-/pblog/issues"
   },
-  "homepage": "https://github.com/Link-/pblog#readme"
+  "homepage": "https://github.com/Link-/pblog#readme",
+  "allowScripts": {
+    "puppeteer@25.12.0": true
+  }
 }
