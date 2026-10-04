@@ -1,0 +1,87 @@
+---
+layout: default
+---
+<section class="courses-hero">
+  <div class="shell courses-hero-grid">
+    <div>
+      <p class="eyebrow">Courses</p>
+      <h1>Learn the systems<br><em>behind the work.</em></h1>
+    </div>
+    <div class="courses-intro">
+      <p>Practical courses for engineers who want to understand the machinery, not just memorize the commands.</p>
+      <div class="courses-stats" aria-label="Course collection summary">
+        <div><strong>{{ site.data.courses.size }}</strong><span>courses</span></div>
+        <div><strong>3</strong><span>core subjects</span></div>
+        <div><strong>1</strong><span>goal: useful depth</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% assign featured_course = site.data.courses | where: "featured", true | first %}
+{% if featured_course %}
+<section class="course-feature shell" aria-labelledby="featured-course-title">
+  <div class="section-heading">
+    <p class="eyebrow">Featured course</p>
+    <span class="section-rule"></span>
+  </div>
+  <article class="featured-course">
+    <a class="featured-course-media" href="{{ featured_course.url }}" aria-label="View {{ featured_course.title }} on {{ featured_course.provider }}">
+      <img src="{{ featured_course.image | relative_url }}" alt="Course artwork for {{ featured_course.title }}" width="1200" height="630">
+      <span class="course-provider">{{ featured_course.provider }}</span>
+    </a>
+    <div class="featured-course-copy">
+      <div class="post-kicker">
+        <span>{{ featured_course.format }}</span>
+        <span>{{ featured_course.access }}</span>
+      </div>
+      <h2 id="featured-course-title">{{ featured_course.title }}</h2>
+      <p>{{ featured_course.description }}</p>
+      <ul class="course-topics" aria-label="Course topics">
+        {% for topic in featured_course.topics %}<li>{{ topic }}</li>{% endfor %}
+      </ul>
+      <div class="featured-course-actions">
+        <a class="button button-primary" href="{{ featured_course.url }}">Watch the playlist <span aria-hidden="true">↗</span></a>
+        {% if featured_course.waitlist_url %}
+          <a class="button button-secondary" href="{{ featured_course.waitlist_url }}">Join the waiting list <span aria-hidden="true">↗</span></a>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+</section>
+{% endif %}
+
+<section class="course-library shell" aria-labelledby="course-library-title">
+  <div class="section-heading section-heading-large">
+    <div>
+      <p class="eyebrow">The library</p>
+      <h2 id="course-library-title">Keep learning</h2>
+    </div>
+    <p>Deep dives built around examples, tradeoffs, and the details that make ideas stick.</p>
+  </div>
+
+  <div class="course-grid">
+    {% for course in site.data.courses %}
+      {% unless course.featured %}
+        <article class="course-card">
+          <a class="course-card-media" href="{{ course.url }}" aria-label="View {{ course.title }}">
+            <img src="{{ course.image | relative_url }}" alt="Course artwork for {{ course.title }}" width="1280" height="720" loading="lazy">
+            <span>{{ course.access }}</span>
+          </a>
+          <div class="course-card-copy">
+            <div class="course-meta">
+              <span>{{ course.provider }}</span>
+              <span>{{ course.format }}</span>
+            </div>
+            <h3><a href="{{ course.url }}">{{ course.title }}</a></h3>
+            <p>{{ course.description }}</p>
+            <ul class="course-topics" aria-label="Course topics">
+              {% for topic in course.topics %}<li>{{ topic }}</li>{% endfor %}
+            </ul>
+            <a class="course-link" href="{{ course.url }}">Start learning <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      {% endunless %}
+    {% endfor %}
+  </div>
+</section>

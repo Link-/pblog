@@ -46,6 +46,8 @@ plainwhite:
       url: "/"
     - title: Speaking
       url: "/public-speaking/"
+    - title: Courses
+      url: "/courses/"
     - title: About
       url: "/about/"
     - title: RSS feed
