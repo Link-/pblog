@@ -10,7 +10,7 @@
   "dependencies": {
     "handlebars": "^4.7.9",
     "parse-md": "^3.0.3",
-    "puppeteer": "^25.12.0",
+    "puppeteer": "^25.16.0",
     "reading-time": "^1.5.0"
   },
   "scripts": {
