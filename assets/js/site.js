@@ -278,11 +278,14 @@
       diagrams.push({ frame, container, toolbar, viewport, scale: 1 });
     });
 
-    import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs").then(async ({ default: mermaid }) => {
+    import("https://cdn.jsdelivr.net/npm/mermaid@12/dist/mermaid.esm.min.mjs").then(async ({ default: mermaid }) => {
       mermaid.initialize({
         startOnLoad: false,
         theme: root.dataset.theme === "dark" ? "dark" : "neutral",
         securityLevel: "strict",
+        // Mermaid 12 defaults to the ELK layout and the "neo" look. Keep the v11 look.
+        layout: "dagre",
+        look: "classic",
       });
 
       await mermaid.run({ nodes: diagrams.map(({ container }) => container) });

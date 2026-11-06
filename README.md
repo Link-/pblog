@@ -17,9 +17,9 @@ The site is built with Jekyll and deployed as static files to the existing serve
 
 ## Requirements
 
-- Ruby 3.1.3
+- Ruby 4.0.9 (CI), 3.4 or newer for local development
 - Bundler
-- Node.js 24
+- Node.js 26
 - npm
 
 ## Local setup
