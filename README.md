@@ -77,6 +77,8 @@ sitemap:
 ---
 ```
 
+Reading time is estimated from the word count. Set `reading_time: 12` (minutes) to override it, for example when code tabs repeat the same example in several languages.
+
 The post filename controls its permalink and normally follows:
 
 ```text
@@ -92,6 +94,26 @@ Fenced code blocks are syntax highlighted and receive an accessible copy button 
 console.log("hello");
 ```
 ````
+
+#### Code tabs
+
+To show the same example in several languages, wrap consecutive fenced blocks in a `code-tabs` div. Keep the blank lines around the fences so kramdown still parses them:
+
+````markdown
+<div class="code-tabs" markdown="1">
+
+```ruby
+puts "hello"
+```
+
+```python
+print("hello")
+```
+
+</div>
+````
+
+Each block becomes a tab named after its language. Picking a language switches every tab group on the page and is remembered across visits (`localStorage`). Arrow keys, Home and End move between tabs. Without JavaScript the blocks are shown one after another.
 
 ### Mermaid diagrams
 

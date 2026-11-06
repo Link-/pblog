@@ -125,6 +125,123 @@
     wrapper.appendChild(button);
   });
 
+  const languageNames = {
+    bash: "Bash",
+    go: "Go",
+    javascript: "JavaScript",
+    js: "JavaScript",
+    python: "Python",
+    py: "Python",
+    rb: "Ruby",
+    ruby: "Ruby",
+    rust: "Rust",
+    rs: "Rust",
+    sh: "Shell",
+    ts: "TypeScript",
+    typescript: "TypeScript",
+  };
+  const codeTabsStorageKey = "code-language";
+
+  // Kramdown puts the language-* class on the wrapper div, not on <code>.
+  const languageOf = (element) =>
+    [...(element.closest('[class*="language-"]')?.classList || [])]
+      .find((className) => className.startsWith("language-"))
+      ?.replace("language-", "");
+
+  const codeTabGroups = [...document.querySelectorAll(".prose .code-tabs")]
+    .map((group, groupIndex) => {
+      // Use the group's direct children so kramdown's wrapper divs move into the panels too.
+      const blocks = [...group.children].filter((child) => child.querySelector(".code-block"));
+      if (blocks.length < 2) return null;
+
+      const tablist = document.createElement("div");
+      tablist.className = "code-tabs-list";
+      tablist.setAttribute("role", "tablist");
+      tablist.setAttribute("aria-label", group.dataset.label || "Code language");
+
+      const tabs = blocks.map((block, index) => {
+        const language = languageOf(block.querySelector("code")) || `code-${index + 1}`;
+        const tabId = `code-tabs-${groupIndex}-tab-${index}`;
+        const panelId = `code-tabs-${groupIndex}-panel-${index}`;
+
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "code-tab";
+        tab.id = tabId;
+        tab.dataset.language = language;
+        tab.textContent = languageNames[language] || language;
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", panelId);
+        tablist.appendChild(tab);
+
+        const panel = document.createElement("div");
+        panel.className = "code-tab-panel";
+        panel.id = panelId;
+        panel.setAttribute("role", "tabpanel");
+        panel.setAttribute("aria-labelledby", tabId);
+        panel.tabIndex = 0;
+        block.replaceWith(panel);
+        panel.appendChild(block);
+
+        return { tab, panel, language };
+      });
+
+      group.prepend(tablist);
+      group.classList.add("is-enhanced");
+      return { tabs };
+    })
+    .filter(Boolean);
+
+  const selectTab = (group, selected) => {
+    group.tabs.forEach(({ tab, panel }) => {
+      const isSelected = tab === selected;
+      tab.setAttribute("aria-selected", isSelected);
+      tab.tabIndex = isSelected ? 0 : -1;
+      panel.hidden = !isSelected;
+    });
+  };
+
+  const selectLanguage = (language) => {
+    codeTabGroups.forEach((group) => {
+      const match = group.tabs.find((item) => item.language === language);
+      if (match) selectTab(group, match.tab);
+    });
+  };
+
+  if (codeTabGroups.length) {
+    let savedLanguage = null;
+    try {
+      savedLanguage = localStorage.getItem(codeTabsStorageKey);
+    } catch {}
+
+    codeTabGroups.forEach((group) => {
+      const preferred = group.tabs.find((item) => item.language === savedLanguage) || group.tabs[0];
+      selectTab(group, preferred.tab);
+
+      group.tabs.forEach(({ tab, language }, index) => {
+        tab.addEventListener("click", () => {
+          // Switching every group can change the page height above this one; keep the clicked tab still.
+          const before = tab.getBoundingClientRect().top;
+          selectLanguage(language);
+          window.scrollBy(0, tab.getBoundingClientRect().top - before);
+          try {
+            localStorage.setItem(codeTabsStorageKey, language);
+          } catch {}
+        });
+
+        tab.addEventListener("keydown", (event) => {
+          const last = group.tabs.length - 1;
+          const targets = { ArrowLeft: index === 0 ? last : index - 1, ArrowRight: index === last ? 0 : index + 1, Home: 0, End: last };
+          if (!(event.key in targets)) return;
+          event.preventDefault();
+          const next = group.tabs[targets[event.key]].tab;
+          next.focus();
+          next.click();
+        });
+      });
+    });
+  }
+
   const mermaidBlocks = document.querySelectorAll("pre > code.language-mermaid");
   if (mermaidBlocks.length) {
     const diagrams = [];

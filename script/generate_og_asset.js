@@ -169,7 +169,7 @@ async function main() {
       title: String(metadata.title),
       description: truncate(metadata.tldr || 'Notes from experience in software, systems, and engineering leadership.', 190),
       titleFontSize: titleFontSize(String(metadata.title)),
-      readingMinutes: Math.max(1, Math.round(readingStats.minutes)),
+      readingMinutes: Number(metadata.reading_time) || Math.max(1, Math.round(readingStats.minutes)),
       categories,
       portraitDataUri,
       outputPath,

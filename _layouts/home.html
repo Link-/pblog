@@ -37,7 +37,7 @@ layout: default
     <div class="featured-copy">
       <div class="post-kicker">
         <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%B %-d, %Y" }}</time>
-        <span>{{ featured.content | number_of_words | divided_by: 220 | plus: 1 }} min read</span>
+        <span>{% if featured.reading_time %}{{ featured.reading_time }}{% else %}{{ featured.content | number_of_words | divided_by: 220 | plus: 1 }}{% endif %} min read</span>
       </div>
       <h2 id="featured-title">{{ featured.title }}</h2>
       <p>{{ featured.tldr | default: featured.excerpt | strip_html | truncatewords: 34 }}</p>
@@ -69,7 +69,7 @@ layout: default
           <p>{{ post.tldr | default: post.excerpt | strip_html | truncatewords: 28 }}</p>
         </div>
         <div class="post-row-meta">
-          <span>{{ post.content | number_of_words | divided_by: 220 | plus: 1 }} min</span>
+          <span>{% if post.reading_time %}{{ post.reading_time }}{% else %}{{ post.content | number_of_words | divided_by: 220 | plus: 1 }}{% endif %} min</span>
           <span class="row-arrow" aria-hidden="true">↗</span>
         </div>
       </article>

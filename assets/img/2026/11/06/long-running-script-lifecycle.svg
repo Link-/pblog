@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">The life of one chunk of work</title>
+  <desc id="desc">Your laptop packages the script and input with a checksum manifest. The remote box verifies the checksums, runs in batches writing receipts and a progress log, and is steered by stop, pause and rate files checked between batches. It archives everything with a checksum, and the laptop verifies and keeps the archive. Every copy between the two machines is checked with sha256.</desc>
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#2b372e"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#a5afa7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b9ddc7"/>
+    </marker>
+    <style>
+      .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; }
+      .zone-label { font-size: 16px; font-weight: 700; letter-spacing: 2.5px; fill: #8f9891; }
+      .card { fill: #222d25; stroke: #3a473e; stroke-width: 1.5; }
+      .card-title { font-size: 23px; font-weight: 650; fill: #eef2ec; }
+      .line { font-size: 17.5px; fill: #a5afa7; }
+      .hl { fill: #b9ddc7; }
+      .num { font-size: 16px; font-weight: 700; fill: #fffdf8; }
+      .flow { stroke: #a5afa7; stroke-width: 2; fill: none; }
+      .steer { stroke: #b9ddc7; stroke-width: 2; fill: none; stroke-dasharray: 6 6; }
+      .badge-text { font-size: 15px; font-weight: 700; fill: #fffdf8; }
+    </style>
+  </defs>
+
+  <!-- background card -->
+  <rect width="1200" height="680" rx="28" fill="#172019"/>
+  <rect width="1200" height="680" rx="28" fill="url(#dots)"/>
+
+  <!-- heading -->
+  <text x="48" y="58" class="mono" font-size="16" font-weight="700" letter-spacing="3" fill="#ff7655">THE LIFE OF ONE CHUNK</text>
+
+  <!-- zones -->
+  <rect x="40" y="88" width="330" height="520" rx="22" fill="#1b241d" stroke="#2c3830" stroke-width="1.5"/>
+  <rect x="470" y="88" width="690" height="520" rx="22" fill="#1b241d" stroke="#2c3830" stroke-width="1.5"/>
+
+  <!-- laptop icon + label -->
+  <g transform="translate(66 108)" stroke="#8f9891" stroke-width="1.8" fill="none" stroke-linejoin="round">
+    <rect x="3" y="0" width="22" height="14" rx="2"/>
+    <path d="M0 18 H28"/>
+  </g>
+  <text x="104" y="124" class="sans zone-label">YOUR LAPTOP</text>
+
+  <!-- server icon + label -->
+  <g transform="translate(496 104)" stroke="#8f9891" stroke-width="1.8" fill="none">
+    <rect x="0" y="0" width="24" height="9" rx="2"/>
+    <rect x="0" y="12" width="24" height="9" rx="2"/>
+    <circle cx="5" cy="4.5" r="1" fill="#8f9891"/>
+    <circle cx="5" cy="16.5" r="1" fill="#8f9891"/>
+  </g>
+  <text x="534" y="124" class="sans zone-label">REMOTE BOX</text>
+
+  <!-- 1. Package (laptop, top) -->
+  <rect x="68" y="152" width="274" height="160" rx="16" class="card"/>
+  <circle cx="98" cy="186" r="15" fill="#d84b2a"/>
+  <text x="98" y="191" text-anchor="middle" class="sans num">1</text>
+  <text x="128" y="194" class="sans card-title">Package</text>
+  <text x="90" y="236" class="mono line">script</text>
+  <text x="90" y="266" class="mono line">input chunk</text>
+  <text x="90" y="296" class="mono line hl">SHA256SUMS</text>
+
+  <!-- 5. Verify and keep (laptop, bottom) -->
+  <rect x="68" y="408" width="274" height="160" rx="16" class="card"/>
+  <circle cx="98" cy="442" r="15" fill="#d84b2a"/>
+  <text x="98" y="447" text-anchor="middle" class="sans num">5</text>
+  <text x="128" y="450" class="sans card-title">Verify and keep</text>
+  <text x="90" y="492" class="mono line hl">sha256sum -c</text>
+  <text x="90" y="522" class="mono line">store the archive</text>
+  <text x="90" y="552" class="mono line">and its checksum</text>
+
+  <!-- 2. Verify (remote) -->
+  <rect x="498" y="152" width="214" height="160" rx="16" class="card"/>
+  <circle cx="528" cy="186" r="15" fill="#d84b2a"/>
+  <text x="528" y="191" text-anchor="middle" class="sans num">2</text>
+  <text x="558" y="194" class="sans card-title">Verify</text>
+  <text x="520" y="236" class="mono line hl">sha256sum -c</text>
+  <text x="520" y="266" class="mono line">mismatch?</text>
+  <text x="520" y="296" class="mono line">stop right here</text>
+
+  <!-- 3. Run in batches (remote) -->
+  <rect x="752" y="152" width="380" height="160" rx="16" class="card"/>
+  <circle cx="782" cy="186" r="15" fill="#d84b2a"/>
+  <text x="782" y="191" text-anchor="middle" class="sans num">3</text>
+  <text x="812" y="194" class="sans card-title">Run in batches</text>
+  <text x="774" y="236" class="mono line">lock, resume, then per row:</text>
+  <text x="774" y="266" class="mono line">receipt  <tspan class="hl">→ out.jsonl</tspan></text>
+  <text x="774" y="296" class="mono line">progress <tspan class="hl">→ out.jsonl.log</tspan></text>
+
+  <!-- 4. Archive (remote) -->
+  <rect x="498" y="408" width="400" height="160" rx="16" class="card"/>
+  <circle cx="528" cy="442" r="15" fill="#d84b2a"/>
+  <text x="528" y="447" text-anchor="middle" class="sans num">4</text>
+  <text x="558" y="450" class="sans card-title">Archive</text>
+  <text x="520" y="492" class="mono line">receipts, logs, input, script</text>
+  <text x="520" y="522" class="mono line">tar, list it back, then</text>
+  <text x="520" y="552" class="mono line hl">sha256 the archive</text>
+
+  <!-- Control files (remote, steering) -->
+  <rect x="938" y="408" width="194" height="160" rx="16" fill="#1f2a22" stroke="#b9ddc7" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="960" y="450" class="sans card-title">You steer</text>
+  <text x="960" y="492" class="mono line hl">.stop</text>
+  <text x="960" y="522" class="mono line hl">.pause</text>
+  <text x="960" y="552" class="mono line hl">.rate</text>
+
+  <!-- flows -->
+  <path d="M342 232 H492" class="flow" marker-end="url(#arrow)"/>
+  <path d="M712 232 H746" class="flow" marker-end="url(#arrow)"/>
+  <path d="M784 312 V402" class="flow" marker-end="url(#arrow)"/>
+  <path d="M498 488 H348" class="flow" marker-end="url(#arrow)"/>
+  <path d="M1035 408 V318" class="steer" marker-end="url(#arrow-green)"/>
+  <text x="1022" y="366" text-anchor="end" class="sans" font-size="16" fill="#b9ddc7">checked between batches</text>
+
+  <!-- checksum badges on the arrows that cross machines -->
+  <g transform="translate(420 232)">
+    <rect x="-52" y="-17" width="104" height="34" rx="17" fill="#d84b2a"/>
+    <text y="5.5" text-anchor="middle" class="mono badge-text">sha256 ✓</text>
+  </g>
+  <g transform="translate(420 488)">
+    <rect x="-52" y="-17" width="104" height="34" rx="17" fill="#d84b2a"/>
+    <text y="5.5" text-anchor="middle" class="mono badge-text">sha256 ✓</text>
+  </g>
+
+  <!-- legend -->
+  <g transform="translate(48 644)">
+    <rect x="0" y="-11" width="40" height="20" rx="10" fill="#d84b2a"/>
+    <text x="52" y="3" class="sans" font-size="16.5" fill="#a5afa7">every copy between machines is verified</text>
+    <path d="M410 -2 H444" class="steer"/>
+    <text x="456" y="3" class="sans" font-size="16.5" fill="#a5afa7">you change the run's behaviour with plain files, never by killing it</text>
+  </g>
+</svg>
